@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" 
+		/> -->
+	<!-- 生成代码的简易版本MyBatis3Simple -->
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+
+		<!-- 开启自定义注释 -->
+		<commentGenerator
+			type="MapperCommentGenerator">
+		</commentGenerator>
+
+		<!-- <commentGenerator> <property name="suppressDate" value="true" /> <property 
+			name="suppressAllComments" value="true" /> </commentGenerator> -->
+		<!--数据库-->
+		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/zxzc?serverTimezone=UTC"
+			userId="ziming" password="ziming">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 生成目标包实体类路径 -->
+		<javaModelGenerator
+			targetPackage="cn.springboot.demo.model" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- sql生成策略 -->
+		<sqlMapGenerator
+			targetPackage="cn.springboot.demo.mapper" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		 <!--dao路径 MIXEDMAPPER ANNOTATEDMAPPER XMLMAPPER-->
+		<javaClientGenerator type="ANNOTATEDMAPPER"
+			targetPackage="cn.springboot.demo.mapper" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<!--&lt;!&ndash; 指定生成哪些表 &ndash;&gt;-->
+		<!--<table tableName="body" domainObjectName="Body"></table> -->
+		<!-- <table tableName="mxsxz" domainObjectName="Mxsxz"></table> -->
+		<!--<table tableName="mx" domainObjectName="Mx"></table>-->
+		<!--<table tableName="mxsx" domainObjectName="Mxsx"></table>-->
+		<table tableName="Yh" domainObjectName="Yh"></table>
+		<!--<table tableName="sb" domainObjectName="Sb"></table>-->
+		<!--&lt;!&ndash; <table tableName="mx" domainObjectName="Mx"></table> <table tableName="mxsx"-->
+			<!--domainObjectName="Mxsx"></table> &ndash;&gt;-->
+		<!--&lt;!&ndash; <table tableName="XTZDFL" domainObjectName="Xtzdfl"></table> &ndash;&gt;-->
+		<!--<table tableName="ty_xtzdfl" domainObjectName="TyXtzdfl"></table>-->
+		<!--<table tableName="ty_xtzd" domainObjectName="TyXtzd"></table>-->
+
+	</context>
+</generatorConfiguration>
