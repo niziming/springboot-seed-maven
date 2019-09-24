@@ -1,4 +1,4 @@
-package cn.springboot.demo.common;
+package cn.springboot.seed.common;
 
 import tk.mybatis.mapper.common.ConditionMapper;
 import tk.mybatis.mapper.common.Mapper;

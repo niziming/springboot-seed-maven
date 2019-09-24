@@ -17,9 +17,10 @@
 		<!-- <commentGenerator> <property name="suppressDate" value="true" /> <property 
 			name="suppressAllComments" value="true" /> </commentGenerator> -->
 		<!--数据库-->
-		<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-			connectionURL="jdbc:mysql://localhost:3306/zxzc?serverTimezone=UTC"
-			userId="ziming" password="ziming">
+		<jdbcConnection
+			driverClass="com.mysql.cj.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/seedDB?serverTimezone=UTC"
+			userId="root" password="root">
 		</jdbcConnection>
 
 		<javaTypeResolver>
@@ -28,20 +29,20 @@
 
 		<!-- 生成目标包实体类路径 -->
 		<javaModelGenerator
-			targetPackage="cn.springboot.demo.model" targetProject="src/main/java">
+                targetPackage="cn.springboot.seed.model" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
 		<!-- sql生成策略 -->
 		<sqlMapGenerator
-			targetPackage="cn.springboot.demo.mapper" targetProject="src/main/java">
+                targetPackage="cn.springboot.seed.mapper" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		 <!--dao路径 MIXEDMAPPER ANNOTATEDMAPPER XMLMAPPER-->
 		<javaClientGenerator type="ANNOTATEDMAPPER"
-			targetPackage="cn.springboot.demo.mapper" targetProject="src/main/java">
+                             targetPackage="cn.springboot.seed.mapper" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<!--&lt;!&ndash; 指定生成哪些表 &ndash;&gt;-->
@@ -49,7 +50,7 @@
 		<!-- <table tableName="mxsxz" domainObjectName="Mxsxz"></table> -->
 		<!--<table tableName="mx" domainObjectName="Mx"></table>-->
 		<!--<table tableName="mxsx" domainObjectName="Mxsx"></table>-->
-		<table tableName="Yh" domainObjectName="Yh"></table>
+		<table tableName="user" domainObjectName="User"></table>
 		<!--<table tableName="sb" domainObjectName="Sb"></table>-->
 		<!--&lt;!&ndash; <table tableName="mx" domainObjectName="Mx"></table> <table tableName="mxsx"-->
 			<!--domainObjectName="Mxsx"></table> &ndash;&gt;-->

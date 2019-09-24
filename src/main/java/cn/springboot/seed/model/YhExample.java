@@ -1,9 +1,7 @@
-package cn.springboot.demo.model;
+package cn.springboot.seed.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Id;
 
 public class YhExample {
     protected String orderByClause;

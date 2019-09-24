@@ -1,4 +1,4 @@
-package cn.springboot.demo.model;
+package cn.springboot.seed.model;
 
 import javax.persistence.Column;
 import javax.persistence.Id;

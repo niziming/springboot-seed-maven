@@ -1,7 +1,7 @@
-package cn.springboot.demo.controller;
+package cn.springboot.seed.controller;
 
-import cn.springboot.demo.model.Yh;
-import cn.springboot.demo.service.YhService;
+import cn.springboot.seed.model.Yh;
+import cn.springboot.seed.service.YhService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

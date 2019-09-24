@@ -1,4 +1,4 @@
-package cn.springboot.demo.common;
+package cn.springboot.seed.common;
 
 import java.util.LinkedHashMap;
 

@@ -1,7 +1,7 @@
-package cn.springboot.demo.service;
+package cn.springboot.seed.service;
 
-import cn.springboot.demo.mapper.YhMapper;
-import cn.springboot.demo.model.Yh;
+import cn.springboot.seed.mapper.YhMapper;
+import cn.springboot.seed.model.Yh;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

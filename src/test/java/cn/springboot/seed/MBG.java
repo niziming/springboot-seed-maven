@@ -1,4 +1,4 @@
-package cn.springboot.demo;
+package cn.springboot.seed;
 
 
 import org.mybatis.generator.api.MyBatisGenerator;
