@@ -31,9 +31,9 @@ public class UserController {
         return "user/login";
     }
 
-    // @ApiOperation(value = "用户登录", notes = "用户名密码登录")
+    @ApiOperation(value = "用户登录", notes = "用户名密码登录")
     @PostMapping("/login")
-    public String Login(User user){
+    public String Login(@RequestParam User user){
         User loginUser = userService.login(user);
         ResultMap resultMap = new ResultMap();
         if (loginUser != null){
