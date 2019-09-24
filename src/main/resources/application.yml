@@ -13,3 +13,10 @@ spring:
       max-request-size: 100MB
 server:
   port: 8080
+
+# 设定访问Api doc的路由这个 path 就是 json 的访问 request mapping. 可以自定义，防止与自身代码冲突。
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api-docs

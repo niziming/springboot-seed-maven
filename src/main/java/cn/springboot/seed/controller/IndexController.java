@@ -1,7 +1,7 @@
 package cn.springboot.seed.controller;
 
-import cn.springboot.seed.model.Yh;
-import cn.springboot.seed.service.YhService;
+import cn.springboot.seed.model.User;
+import cn.springboot.seed.service.UserService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +13,11 @@ import java.util.List;
 // @RequestMapping("/")
 public class IndexController {
     @Autowired
-    YhService yhService;
+    private UserService userService;
 
     @GetMapping("")
     @ResponseBody
-    public List<Yh> Stringindex(){
-        List<Yh> yhs = yhService.selectAll();
-        return yhs;
+    public List<User> selectAll(){
+        return userService.selectAllUsers();
     }
 }

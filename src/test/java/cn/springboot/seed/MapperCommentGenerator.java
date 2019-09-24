@@ -27,8 +27,8 @@ public class MapperCommentGenerator implements CommentGenerator {
 
 	@Override
 	public void addJavaFileComment(CompilationUnit compilationUnit) {
-		compilationUnit.addImportedType(new FullyQualifiedJavaType("javax.persistence.Column"));
-		compilationUnit.addImportedType(new FullyQualifiedJavaType("javax.persistence.Id"));
+		// compilationUnit.addImportedType(new FullyQualifiedJavaType("javax.persistence.Column"));
+		// compilationUnit.addImportedType(new FullyQualifiedJavaType("javax.persistence.Id"));
 	}
 
 	/**

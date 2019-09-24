@@ -6,12 +6,13 @@
 <generatorConfiguration>
 	<!-- <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" 
 		/> -->
+
 	<!-- 生成代码的简易版本MyBatis3Simple -->
 	<context id="DB2Tables" targetRuntime="MyBatis3">
 
-		<!-- 开启自定义注释 -->
+		<!-- 开启自定义注释 包名路径一定要写对 -->
 		<commentGenerator
-			type="MapperCommentGenerator">
+			type="cn.springboot.seed.MapperCommentGenerator">
 		</commentGenerator>
 
 		<!-- <commentGenerator> <property name="suppressDate" value="true" /> <property 

@@ -12,16 +12,16 @@ import java.util.List;
 
 public class MBG {
 
-	public static void main(String[] args) throws Exception {
-		System.out.println("--------开始运行-------");
-		List<String> warnings = new ArrayList<String>();
-		boolean overwrite = true;
-		File configFile = new File("gen.xml");
-		ConfigurationParser cp = new ConfigurationParser(warnings);
-		Configuration config = cp.parseConfiguration(configFile);
-		DefaultShellCallback callback = new DefaultShellCallback(overwrite);
-		MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
-		myBatisGenerator.generate(null);
-		System.out.println("-------运行完成--------");
-	}
+    public static void main(String[] args) throws Exception {
+        System.out.println("--------开始运行-------");
+        List<String> warnings = new ArrayList<String>();
+        boolean overwrite = true;
+        File configFile = new File("mybatis-generatorConfig.xml");
+        ConfigurationParser cp = new ConfigurationParser(warnings);
+        Configuration config = cp.parseConfiguration(configFile);
+        DefaultShellCallback callback = new DefaultShellCallback(overwrite);
+        MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
+        myBatisGenerator.generate(null);
+        System.out.println("-------运行完成--------");
+    }
 }
