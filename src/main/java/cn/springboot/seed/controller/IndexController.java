@@ -14,7 +14,9 @@ public class IndexController {
     private UserService userService;
 
     @GetMapping("")
-    public String selectAll(){
-        return "index";
+    public ModelAndView selectAll(){
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("msg", "这条语句是Thymeleaf测试语句");
+        return modelAndView;
     }
 }

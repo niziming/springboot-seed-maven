@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -33,15 +34,16 @@ public class UserController {
 
     @ApiOperation(value = "用户登录", notes = "用户名密码登录")
     @PostMapping("/login")
-    public String Login(@RequestParam User user){
+    public ModelAndView Login(User user){
+        ModelAndView modelAndView = new ModelAndView();
         User loginUser = userService.login(user);
-        ResultMap resultMap = new ResultMap();
         if (loginUser != null){
-            resultMap.set("user", loginUser);
-            return "index";
+            modelAndView.setViewName("user/info");
+            modelAndView.addObject(loginUser);
+            System.out.println(modelAndView);
+            return modelAndView;
         }
-        resultMap.fail("用户名或账户不正确");
-        return "user/login";
+        modelAndView.setViewName("user/login");
+        return modelAndView;
     }
-
 }
