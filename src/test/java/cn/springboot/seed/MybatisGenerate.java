@@ -10,7 +10,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MBG {
+public class MybatisGenerate {
 
     public static void main(String[] args) throws Exception {
         System.out.println("--------开始运行-------");

@@ -26,11 +26,9 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("服务:发布为daocke镜像,权限管理，用户管理，页面管理，日志 后台 APIs")
-                .description("服务:发布为daocke镜像,权限管理，用户管理，页面管理，日志 后台")
+                .title("SpringBoot-Seed种子文件SwaggerUI后台")
                 .termsOfServiceUrl("http://localhost:10000/platformgroup/ms-admin")
-                .contact("程序猿")
-                .version("1.0")
+                .version("2.0")
                 .build();
     }
 }

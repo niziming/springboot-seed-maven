@@ -4,14 +4,14 @@
 ## 配置内容:
 - Swagger
     - 访问地址http://localhost:8080/swagger-ui.html
-- 框架
-    - springboot
-    
+- 框架: springboot
     - 权限框架
         - Shiro
     - DLL持久层
         - tk.Mybatis
             - mybatis 逆向工程 mbg
+- 日志工具
+    - log4j2
 - 项目管理工具
     - Maven
         
