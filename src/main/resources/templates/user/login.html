@@ -18,7 +18,7 @@
         <label for="password" style="display:inline;">密码：</label>
         <input type="text" class="form-control" name="password" id="password" style="display:inline;width:200px;" autocomplete="off"/>
     </div>
-    <button type="submit" class="btn btn-primary" onclick="login()">登录</button>
+    <button type="submit" class="btn btn-primary">登录</button>
     <button class="btn btn-primary" onclick="register()">注册</button>
 </form>
 
@@ -27,9 +27,7 @@
 <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
 <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script>
-    function login() {
-        alert(JSON.stringify($("#user").serializeObject()))
-    }
+
 </script>
 </body>
 </html>
