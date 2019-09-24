@@ -67,6 +67,13 @@ public class User {
     @Column(name = "TOKEN")
     private String token;
 
+    public User() {}
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     /**
      * 获取用户ID
      *

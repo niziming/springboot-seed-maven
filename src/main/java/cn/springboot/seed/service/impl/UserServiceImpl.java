@@ -18,4 +18,10 @@ public class UserServiceImpl implements UserService{
         List<User> users = userMapper.selectAll();
         return users;
     }
+
+    @Override
+    public User login(User user) {
+        User loginUser = userMapper.selectOne(user);
+        return loginUser;
+    }
 }
