@@ -5,10 +5,11 @@ import cn.springboot.seed.service.UserService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@Api(value = "用户控制层", description = "App相关操作接口定义类")
+
 @RestController
 // @RequestMapping("/")
 public class IndexController {
@@ -18,6 +19,7 @@ public class IndexController {
     @GetMapping("")
     @ResponseBody
     public List<User> selectAll(){
+
         return userService.selectAllUsers();
     }
 }
