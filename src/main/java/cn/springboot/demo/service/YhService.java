@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class YhService {
     @Autowired
-    YhMapper yhMapper;
+    private YhMapper yhMapper;
 
     public List<Yh> selectAll(){
         List<Yh> yhs = yhMapper.selectAll();
