@@ -10,7 +10,10 @@
     - DLL持久层
         - tk.Mybatis
             - mybatis 逆向工程 mbg
-- 日志工具
+- 数据库
+    - mysql5.7.22
+        - 路径:src/main/resources/seeddb.sql
+- 日志工具 
     - log4j2
 - 项目管理工具
     - Maven
