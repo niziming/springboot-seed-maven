@@ -21,7 +21,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User login(User user) {
-        User loginUser = userMapper.selectOne(user);
-        return loginUser;
+        try {
+            User loginUser = userMapper.selectOne(user);
+            return loginUser;
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
     }
 }
