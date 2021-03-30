@@ -31,7 +31,6 @@ Spring Boot 可以建立独立的 Spring 应用程序；
 整合常用依赖（开发库，例如 spring-webmvc、jackson-json、validation-api 和 tomcat 等），提供的 POM 可以简化 Maven 的配置。当我们引入核心依赖时，SpringBoot 会自引入其他依赖。
 
 ### Swagger - 强大的 API 文档工具
-
 1. 是一款让你更好的书写 API 文档的规范且完整框架。
 2. 提供描述、生产、消费和可视化 RESTful Web Service。
 3. 是由庞大工具集合支撑的形式化规范。这个集合涵盖了从终端用户接口、底层代码库到商业 API 管理的方方面面。
