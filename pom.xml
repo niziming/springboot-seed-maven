@@ -30,7 +30,19 @@
         <sentinel.dubbo.version>1.8.0</sentinel.dubbo.version>
         <mybatis-plus-generator.version>3.2.0</mybatis-plus-generator.version>
     </properties>
-
+    <repositories>
+        <repository>
+            <id>alimaven</id>
+            <name>Maven Aliyun Mirror</name>
+            <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

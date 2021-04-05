@@ -58,8 +58,8 @@ public class CodeGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         //pc.setModuleName(scanner("模块名"));
-        //pc.setModuleName("cn.zm");
-        pc.setParent("cn.zm.modules");
+        pc.setModuleName("modules");
+        pc.setParent("cn.zm");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -113,11 +113,11 @@ public class CodeGenerator {
         // templateConfig.setEntity("templates/entity2.java");
         // templateConfig.setService();
         // templateConfig.setController();
-        templateConfig.setEntity("/templates/code/entity.java");
-        templateConfig.setMapper("/templates/code/mapper.java");
-        templateConfig.setService("/templates/code/service.java");
-        templateConfig.setServiceImpl("/templates/code/serviceImpl.java");
-        templateConfig.setController("/templates/code/controller.java");
+        //templateConfig.setEntity("/templates/code/entity.java");
+        //templateConfig.setMapper("/templates/code/mapper.java");
+        //templateConfig.setService("/templates/code/service.java");
+        //templateConfig.setServiceImpl("/templates/code/serviceImpl.java");
+        //templateConfig.setController("/templates/code/controller.java");
 
         templateConfig.setXml(null);
         mpg.setTemplate(templateConfig);
@@ -132,7 +132,7 @@ public class CodeGenerator {
         // 公共父类
         //strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
         // 写于父类中的公共字段
-        strategy.setSuperEntityColumns("id");
+        //strategy.setSuperEntityColumns("id");
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         //strategy.setInclude(new String[]{"account", "student"});
         strategy.setControllerMappingHyphenStyle(true);

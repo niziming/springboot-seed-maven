@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 /**
  * @author Mr_W
  * @date now
- * @description: swagger 配置
+ * @description swagger 配置
  */
 @Configuration
 @EnableSwagger2WebMvc
@@ -22,15 +22,15 @@ public class Knife4jConfiguration {
     public Docket defaultApi2() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(new ApiInfoBuilder()
-                        .title("在线教育 API 文档")
-                        .description("在线教育")
+                        .title("种子 API 文档")
+                        .description("种子")
                         .version("1.0")
                         .build())
                 //分组名称
                 .groupName("1.X版本")
                 .select()
                 //这里指定Controller扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("com.education.service"))
+                .apis(RequestHandlerSelectors.basePackage("com.gyxt.mnxl"))
                 .paths(PathSelectors.any())
                 .build();
     }

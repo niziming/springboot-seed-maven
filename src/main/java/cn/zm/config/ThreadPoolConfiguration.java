@@ -24,7 +24,7 @@ public class ThreadPoolConfiguration {
 		pool.setCorePoolSize(Runtime.getRuntime().availableProcessors() + 1);
 		pool.setMaxPoolSize(Runtime.getRuntime().availableProcessors() * 2 + 2);
 		pool.setQueueCapacity(50);
-		pool.setThreadNamePrefix("mnxl-" + applicationName + "-");
+		pool.setThreadNamePrefix(applicationName + "-");
 		return pool;
 	}
 
