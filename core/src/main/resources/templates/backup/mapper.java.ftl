@@ -6,9 +6,9 @@ import ${superMapperClassPackage};
 
 
 <#if kotlin>
-    interface ${table.mapperName} : ${superMapperClass}<${entity}>
+interface ${table.mapperName} : ${superMapperClass}<${entity}>
 <#else>
-    public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
+public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
     public void add(${entity} ${package.ModuleName});
     public void update(${entity} ${package.ModuleName});
     public void del(String ${package.ModuleName}_id);

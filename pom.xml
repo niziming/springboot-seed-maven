@@ -4,7 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.zm</groupId>
     <artifactId>SpringBoot-Seed</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>core</module>
+    </modules>
     <name>SpringBoot-Seed</name>
     <description>Demo project for Spring Boot</description>
 
@@ -145,8 +149,12 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.11</version>
         </dependency>
-
-
+        <!--Compute Engine API Client Library for Java-->
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-compute</artifactId>
+            <version>v1-rev20210316-1.31.0</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
