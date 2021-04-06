@@ -1,8 +1,7 @@
 package cn.zm.aspect;
 
-
 import cn.zm.annotation.SetNull;
-import cn.zm.utils.ServiceException;
+import cn.zm.common.ServiceException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -24,7 +23,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 /**
  * @author Mr_W
  * @date 2021/2/18 9:22
- * @description: dto 参数切面
+ * @description dto 参数切面
  */
 @Aspect
 @Component
@@ -74,10 +73,10 @@ public class DataTransferObjectAspect {
                         }
                     } catch (NoSuchMethodException e) {
                         LOGGER.error("没有 groups 方法", e);
-                        throw new ServiceException("服务器异常");
+                        throw ServiceException.serviceException("服务器异常", e).build();
                     } catch (IllegalAccessException | InvocationTargetException e) {
                         LOGGER.error("groups 方法执行失败", e);
-                        throw new ServiceException("服务器异常");
+                        throw ServiceException.serviceException("服务器异常", e).build();
                     }
                 }
             }

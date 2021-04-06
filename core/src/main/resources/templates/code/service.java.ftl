@@ -1,18 +1,23 @@
 package ${package.Service};
 
-import java.util.List;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import ${package.Entity}.${entity};
 import ${superServiceClassPackage};
+import cn.zm.modules.entity.dto.${entity? cap_first}DTO;
+import cn.zm.modules.entity.vo.${entity? cap_first}VO;
+<#--import ${package.Entity}.${};-->
 
 <#if kotlin>
-    interface ${table.serviceName} : ${superServiceClass}<${entity}>
+interface ${table.serviceName} : ${superServiceClass}<${entity}>
 <#else>
-    public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
-    public void add(${entity} ${package.ModuleName});
-    public void update(${entity} ${package.ModuleName});
-    public void del(String ${package.ModuleName}_id);
-    public ${entity} getById(String ${package.ModuleName}_id);
-    public List<${entity}> get(${entity} ${package.ModuleName});
-    public List<${entity}> get(${entity} ${package.ModuleName}, int pageNum, int pageSize);
-    }
+public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
+    /**
+    * 分页查询
+    *
+    * @param page   分页信息
+    * @param ${entity} ${table.comment!}入参
+    * @return 分页结果
+    */
+    IPage<${entity? cap_first}VO> selectByPage(IPage<${entity}> page, ${entity? cap_first}DTO ${entity});
+}
 </#if>

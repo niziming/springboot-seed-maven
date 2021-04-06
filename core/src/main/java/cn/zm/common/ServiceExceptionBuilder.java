@@ -1,7 +1,7 @@
-package cn.zm.utils;
+package cn.zm.common;
 
 
-import cn.zm.enums.ServiceExceptionEnum;
+import cn.zm.enums.ResultEnum;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
@@ -52,7 +52,7 @@ public class ServiceExceptionBuilder {
      * @param serviceExceptionEnum 业务异常枚举
      * @param cause                原始异常
      */
-    public ServiceExceptionBuilder(ServiceExceptionEnum serviceExceptionEnum, Throwable cause) {
+    public ServiceExceptionBuilder(ResultEnum serviceExceptionEnum, Throwable cause) {
         this.code = serviceExceptionEnum.getCode();
         this.message = serviceExceptionEnum.getMsg();
         this.alertMessage = serviceExceptionEnum.getMsg();

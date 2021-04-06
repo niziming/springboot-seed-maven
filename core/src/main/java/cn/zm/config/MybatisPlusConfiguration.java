@@ -2,17 +2,19 @@ package cn.zm.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+@EnableTransactionManagement
 @Configuration
-@MapperScan("com.gyxt.mnxl.modules.mapper")
+@EnableCaching(proxyTargetClass = true)
+@MapperScan("cn.zm.modules.mapper")
 public class MybatisPlusConfiguration {
 
     /**
      * 分页插件
-     *
-     * @return 分页插件
      */
     @Bean
     public PaginationInterceptor paginationInterceptor() {

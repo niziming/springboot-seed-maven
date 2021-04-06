@@ -1,7 +1,6 @@
 package cn.zm.common;
 
 import org.springframework.beans.BeanUtils;
-
 import java.lang.reflect.ParameterizedType;
 
 public class ObjectConvert<T> {

@@ -1,8 +1,8 @@
 package cn.zm.config;
 
-import cn.zm.enums.ServiceExceptionEnum;
-import cn.zm.utils.ResponseBean;
-import cn.zm.utils.ServiceException;
+import cn.zm.enums.ResultEnum;
+import cn.zm.common.ResponseResult;
+import cn.zm.common.ServiceException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,25 +27,23 @@ import java.util.List;
 public class GlobalExceptionHandler {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
-	
+
 	@ExceptionHandler(value = Exception.class)
-	public ResponseBean internalErrorHandler(Exception e) {
-		ResponseBean r;
+	public ResponseResult internalErrorHandler(Exception e) {
+		ResponseResult r;
 		if (e instanceof ServiceException) {
 			LOGGER.error("happened serviceException, Caused by " + getMessage(e), e);
-			r = ResponseBean.fail(
-					StringUtils.isBlank(((ServiceException) e).getAlertMessage()) ? e.getMessage() : ((ServiceException) e).getAlertMessage(),
-					((ServiceException) e).getCode());
+			r = ResponseResult.fail(StringUtils.isBlank(((ServiceException) e).getAlertMessage()) ? e.getMessage() : ((ServiceException) e).getAlertMessage());
 		} else {
 			LOGGER.error("happened systemException, Caused by " + getMessage(e), e);
-			r = ResponseBean.fail();
+			r = ResponseResult.fail(null);
 		}
 		e.printStackTrace();
 		return r;
 	}
 	
 	@ExceptionHandler(value = MethodArgumentNotValidException.class)
-	public ResponseBean paramErrorHandler(MethodArgumentNotValidException e) {
+	public ResponseResult paramErrorHandler(MethodArgumentNotValidException e) {
 		BindingResult exceptions = e.getBindingResult();
         // 判断异常中是否有错误信息，如果存在就使用异常中的消息，否则使用默认消息
         if (exceptions.hasErrors()) {
@@ -54,10 +52,10 @@ public class GlobalExceptionHandler {
                 // 这里列出了全部错误参数，按正常逻辑，只需要第一条错误即可
                 FieldError fieldError = (FieldError) errors.get(0);
                 LOGGER.error("invalid parameter, Caused by " + fieldError.getDefaultMessage(), e);
-                return ResponseBean.fail(fieldError.getDefaultMessage(), ServiceExceptionEnum.INVALID_PARAMS.getCode());
+                return ResponseResult.fail(fieldError.getDefaultMessage());
             }
         }
-		return ResponseBean.fail(ServiceExceptionEnum.INVALID_PARAMS.getMsg(), ServiceExceptionEnum.INVALID_PARAMS.getCode());
+		return ResponseResult.fail(ResultEnum.INVALID_PARAMS.getMsg());
 	}
 	
 	private String getMessage(Exception e) {
@@ -71,21 +69,21 @@ public class GlobalExceptionHandler {
 	}
 
 	@ExceptionHandler(MissingServletRequestParameterException.class)
-	public ResponseBean handlerMissingServletRequestParameterException(MissingServletRequestParameterException e) {
+	public ResponseResult handlerMissingServletRequestParameterException(MissingServletRequestParameterException e) {
 		LOGGER.debug(e.getParameterName() + "不能为空", e);
-		return ResponseBean.fail(e.getParameterName() + "不能为空");
+		return ResponseResult.fail(e.getParameterName() + "不能为空");
 	}
 
 	@ExceptionHandler(BindException.class)
-	public ResponseBean handlerBindException(BindException e) {
+	public ResponseResult handlerBindException(BindException e) {
 		LOGGER.debug(e.getAllErrors().get(0).getDefaultMessage(), e);
-		return ResponseBean.fail(e.getAllErrors().get(0).getDefaultMessage());
+		return ResponseResult.fail(e.getAllErrors().get(0).getDefaultMessage());
 	}
 
 	@ExceptionHandler(MultipartException.class)
-	public ResponseBean handleError1(MultipartException e) {
+	public ResponseResult handleError1(MultipartException e) {
 		LOGGER.error("文件解析失败", e);
-		return ResponseBean.fail("文件解析失败");
+		return ResponseResult.fail("文件解析失败");
 	}
 
 }

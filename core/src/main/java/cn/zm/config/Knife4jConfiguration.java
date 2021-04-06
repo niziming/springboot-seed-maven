@@ -17,22 +17,20 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 @Configuration
 @EnableSwagger2WebMvc
 public class Knife4jConfiguration {
-
     @Bean(value = "defaultApi2")
     public Docket defaultApi2() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(new ApiInfoBuilder()
-                        .title("种子 API 文档")
-                        .description("种子")
+                        .title("SpringBoot种子")
+                        .description("seed")
                         .version("1.0")
                         .build())
                 //分组名称
-                .groupName("1.X版本")
+                .groupName("1.0.0版本")
                 .select()
                 //这里指定Controller扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("com.gyxt.mnxl"))
+                .apis(RequestHandlerSelectors.basePackage("cn.zm"))
                 .paths(PathSelectors.any())
                 .build();
     }
-
 }

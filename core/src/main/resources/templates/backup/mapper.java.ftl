@@ -3,8 +3,6 @@ package ${package.Mapper};
 import java.util.List;
 import ${package.Entity}.${entity};
 import ${superMapperClassPackage};
-
-
 <#if kotlin>
 interface ${table.mapperName} : ${superMapperClass}<${entity}>
 <#else>

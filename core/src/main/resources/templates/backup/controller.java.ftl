@@ -24,8 +24,8 @@ import ${package.Service}.${table.serviceName};
 
 /**
 * <p>
-    * a${table.comment!}
-    * </p>
+* a${table.comment!}
+* </p>
 *
 * @author ${author}
 * @since ${date}

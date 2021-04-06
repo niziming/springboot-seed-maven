@@ -20,7 +20,7 @@ import java.util.Optional;
  * @date 2021/2/20 18:50
  * @description 基础控制器
  */
-public class BaseController {
+public class  BaseController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 

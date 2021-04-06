@@ -3,19 +3,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.zm</groupId>
-    <artifactId>SpringBoot-Seed</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>SpringBoot-Maven</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <name>SpringBoot-Maven</name>
+    <description>Demo project for Spring Boot</description>
+
     <modules>
         <module>core</module>
     </modules>
-    <name>SpringBoot-Seed</name>
-    <description>Demo project for Spring Boot</description>
+
+    <packaging>pom</packaging>
 
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <revision>0.0.1-SNAPSHOT</revision>
         <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
         <spring-cloud-alibaba.version>2.2.2.RELEASE</spring-cloud-alibaba.version>
@@ -34,35 +38,24 @@
         <sentinel.dubbo.version>1.8.0</sentinel.dubbo.version>
         <mybatis-plus-generator.version>3.2.0</mybatis-plus-generator.version>
     </properties>
-    <repositories>
-        <repository>
-            <id>alimaven</id>
-            <name>Maven Aliyun Mirror</name>
-            <url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+
     <dependencies>
+        <!-- web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <!-- aop -->
@@ -74,6 +67,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <scope>compile</scope>
         </dependency>
 
         <!-- mysql-connector -->
@@ -82,7 +76,7 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!--mybatis-plus-->
+        <!-- mybatis-plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
@@ -98,7 +92,11 @@
             <artifactId>knife4j-spring-boot-starter</artifactId>
         </dependency>
 
-        <!-- redis 连接池 -->
+        <!-- redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
@@ -119,42 +117,45 @@
         </dependency>
 
         <!--freemarker模板引擎-->
-        <!--<dependency>-->
-        <!--    <groupId>org.freemarker</groupId>-->
-        <!--    <artifactId>freemarker</artifactId>-->
-        <!--    <version>2.3.30</version>-->
-        <!--    <scope>test</scope>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
+            <scope>compile</scope>
         </dependency>
 
-        <!--fastjson -->
+        <!-- fastjson -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
 
-        <!--热部署依赖 -->
+        <!-- 热部署依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!--commons-lang3 -->
+        <!-- commons-lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.11</version>
+            <version>3.10</version>
         </dependency>
-        <!--Compute Engine API Client Library for Java-->
+
+        <!-- 导入配置文件处理器，配置文件进行绑定就会有提示 -->
         <dependency>
-            <groupId>com.google.apis</groupId>
-            <artifactId>google-api-services-compute</artifactId>
-            <version>v1-rev20210316-1.31.0</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
+
+        <!--SpringBoot 热部署依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -235,36 +236,4 @@
 
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.7.RELEASE</version>
-                <configuration>
-                    <mainClass>cn.zm.HelloApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
