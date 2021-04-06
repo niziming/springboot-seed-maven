@@ -3,7 +3,7 @@
 
 ## 配置内容:
 - Swagger
-    - 访问地址http://localhost:8080/swagger-ui.html
+    - 访问地址http://localhost:9000/dev/doc.html
 - 框架: springboot
     - 权限框架
         - Shiro
