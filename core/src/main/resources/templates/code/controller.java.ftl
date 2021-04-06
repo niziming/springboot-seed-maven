@@ -1,96 +1,98 @@
 package ${package.Controller};
 
-import ${package.Entity}.${entity};
-import com.github.pagehelper.PageInfo;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import com.kofan.juanzong.admin.sys.annotation.CurrentUser;
-import com.kofan.juanzong.admin.sys.annotation.LoginRequired;
-import com.kofan.juanzong.admin.sys.annotation.NoAuth;
-import com.kofan.juanzong.admin.sys.annotation.NotNull;
-import com.kofan.juanzong.admin.user.entity.User;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.kofan.juanzong.sys.util.ResultUtil;
 import ${package.Service}.${table.serviceName};
-
 <#if restControllerStyle>
-    import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestController;
 <#else>
-    import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Controller;
 </#if>
 <#if superControllerClassPackage??>
-    import ${superControllerClassPackage};
+import ${superControllerClassPackage};
 </#if>
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import cn.zm.common.ResponseResult;
+import cn.zm.${package.ModuleName}.entity.dto.<#if entity?ends_with("DTO")>${entity? cap_first? substring(0, entity? index_of("DTO"))}<#else>${entity? cap_first}</#if>DTO;
+import cn.zm.${package.ModuleName}.entity.vo.<#if entity?ends_with("DTO")>${entity? cap_first? substring(0, entity? index_of("DTO"))}<#else>${entity? cap_first}</#if>VO;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Api;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
-* <p>
-    * a${table.comment!}
-    * </p>
-*
-* @author ${author}
-* @since ${date}
-*/
+ * <p>
+ * a${table.comment!}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
 <#if restControllerStyle>
-    @RestController
+@RequestMapping("<#if entity?ends_with("DTO")>${entity? substring(0, entity? uncap_first? index_of("DTO"))}<#else>${entity? uncap_first}</#if>")
+@RestController
+@Api(tags = "${table.comment}")
 <#else>
-    @Controller
+@Controller
 </#if>
 <#if kotlin>
-    class ${table.controllerName}<#if superControllerClass??> : ${superControllerClass}()</#if>
+class ${table.controllerName}<#if superControllerClass??> : ${superControllerClass}()</#if>
 <#else>
     <#if superControllerClass??>
-        public class ${table.controllerName} extends ${superControllerClass} {
+public class ${table.controllerName} extends ${superControllerClass} {
     <#else>
-        public class ${table.controllerName} {
+public class ${table.controllerName} {
     </#if>
 
-    @Autowired
-    ${table.serviceName} ${table.entityPath}Service;
+    @Resource
+    private ${table.serviceName} <#if entity?ends_with("DTO")>${entity? substring(0, entity? uncap_first? index_of("DTO"))}<#else>${entity? uncap_first}</#if>Service;
 
-    @RequestMapping("/${table.entityPath}GetByPage")
-    @LoginRequired
-    @NoAuth("${table.comment!}查询(分页)")
-    @NotNull(str="pageNum,pageSize")
-    public Object getByPage(${entity} ${table.entityPath}, int pageNum, int pageSize, @CurrentUser User currentUser) {
-    List<${entity}> ${table.entityPath}List = ${table.entityPath}Service.get(${table.entityPath}, pageNum, pageSize);
-    PageInfo<${entity}> pageInfo = new PageInfo<>(${table.entityPath}List);
-    return ResultUtil.success(pageInfo);
-    }
-
-    @RequestMapping("/${table.entityPath}Get")
-    @LoginRequired
-    @NoAuth("${table.comment!}查询")
-    public Object get(${entity} ${table.entityPath}, @CurrentUser User currentUser) {
-    List<${entity}> ${table.entityPath}List = ${table.entityPath}Service.get(${table.entityPath});
-    return ResultUtil.success(${table.entityPath}List);
+    @GetMapping
+    @ApiOperation("${table.comment!}查询")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "page", value = "当前页数", defaultValue = "1"),
+        @ApiImplicitParam(name = "size", value = "每页个数", defaultValue = "10"),
+        @ApiImplicitParam(name = "orderByColumn", value = "排序字段"),
+        @ApiImplicitParam(name = "isDesc", value = "是否降序")
+    })
+    public ResponseResult<IPage<<#if entity?ends_with("DTO")>${entity? cap_first? substring(0, entity? index_of("DTO"))}<#else>${entity? cap_first}</#if>VO>> getByPage(@Validated <#if entity?ends_with("DTO")>${entity? cap_first? substring(0, entity? index_of("DTO"))}<#else>${entity}</#if>DTO <#if entity?ends_with("DTO")>${entity? substring(0, entity? uncap_first? index_of("DTO"))}<#else>${entity? uncap_first}</#if>) {
+        // TODO 分页查询
+        IPage<<#if entity?ends_with("DTO")>${entity? cap_first? substring(0, entity? index_of("DTO"))}<#else>${entity? cap_first}</#if>VO> page = <#if entity?ends_with("DTO")>${entity? substring(0, entity? uncap_first? index_of("DTO"))}<#else>${entity? uncap_first}</#if>Service.selectByPage(getPage(), <#if entity?ends_with("DTO")>${entity? uncap_first? substring(0, entity? index_of("DTO"))}<#else>${entity? uncap_first}</#if>);
+        return ResponseResult.succ(page);
     }
 
-    @RequestMapping("/${table.entityPath}Add")
-    @LoginRequired
-    @NoAuth("${table.comment!}新增")
-    public Object add(${entity} ${table.entityPath}, @CurrentUser User currentUser) {
-    ${table.entityPath}.setCreate_user_id(currentUser.getUser_id());
-    ${table.entityPath}Service.add(${table.entityPath});
-    return ResultUtil.success();
+    @GetMapping("{id}")
+    @ApiOperation("${table.comment!}查询(id)")
+    public ResponseResult<<#if entity?ends_with("DTO")>${entity? cap_first? substring(0, entity? index_of("DTO"))}<#else>${entity? cap_first}</#if>VO> get(@PathVariable String id) {
+        // TODO 查询
+        boolean aNull = Objects.isNull(<#if entity?ends_with("DTO")>${entity? substring(0, entity? uncap_first? index_of("DTO"))}<#else>${entity? uncap_first}</#if>Service.getById(id));
+        return ResponseResult.succ(aNull ? null : <#if entity?ends_with("DTO")>${entity? substring(0, entity? uncap_first? index_of("DTO"))}<#else>${entity? uncap_first}</#if>Service.getById(id).convert());
     }
 
-    @RequestMapping("/${table.entityPath}Del")
-    @LoginRequired
-    @NoAuth("${table.comment!}删除")
-    @NotNull(str="${table.name}_id")
-    public Object del(${entity} ${table.entityPath}, @CurrentUser User currentUser) {
-    ${table.entityPath}.setIs_del("1");
-    ${table.entityPath}Service.update(${table.entityPath});
-    return ResultUtil.success();
+    @PostMapping
+    @ApiOperation("${table.comment!}新增")
+    public ResponseResult add(@RequestBody @Validated <#if entity?ends_with("DTO")>${entity? cap_first? substring(0, entity? index_of("DTO"))}<#else>${entity}</#if>DTO <#if entity?ends_with("DTO")>${entity? substring(0, entity? uncap_first? index_of("DTO"))}<#else>${entity? uncap_first}</#if>) {
+        // TODO 新增
+        <#if entity?ends_with("DTO")>${entity? substring(0, entity? uncap_first? index_of("DTO"))}<#else>${entity? uncap_first}</#if>Service.save(<#if entity?ends_with("DTO")>${entity? substring(0, entity? uncap_first? index_of("DTO"))}<#else>${entity? uncap_first}</#if>.convert());
+        return ResponseResult.succ("新增成功");
     }
 
-    @RequestMapping("/${table.entityPath}Update")
-    @LoginRequired
-    @NoAuth("${table.comment!}修改")
-    @NotNull(str="${table.name}_id")
-    public Object update(${entity} ${table.entityPath}, @CurrentUser User currentUser) {
-    ${table.entityPath}Service.update(${table.entityPath});
-    return ResultUtil.success();
+    @DeleteMapping("{id}")
+    @ApiOperation("${table.comment!}删除")
+    public ResponseResult del(@PathVariable String id) {
+        // TODO 删除
+        <#if entity?ends_with("DTO")>${entity? substring(0, entity? uncap_first? index_of("DTO"))}<#else>${entity? uncap_first}</#if>Service.removeById(id);
+        return ResponseResult.succ("删除成功");
     }
+
+    @PutMapping
+    @ApiOperation("${table.comment!}修改")
+    public ResponseResult update(@RequestBody @Validated <#if entity?ends_with("DTO")>${entity? cap_first? substring(0, entity? index_of("DTO"))}<#else>${entity}</#if>DTO <#if entity?ends_with("DTO")>${entity? substring(0, entity? uncap_first? index_of("DTO"))}<#else>${entity? uncap_first}</#if>) {
+        // TODO 修改
+        <#if entity?ends_with("DTO")>${entity? substring(0, entity? uncap_first? index_of("DTO"))}<#else>${entity? uncap_first}</#if>Service.updateById(<#if entity?ends_with("DTO")>${entity? substring(0, entity? uncap_first? index_of("DTO"))}<#else>${entity? uncap_first}</#if>.convert());
+        return ResponseResult.succ("修改成功");
     }
+}
 </#if>

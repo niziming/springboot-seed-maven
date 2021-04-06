@@ -4,55 +4,44 @@ import ${package.Entity}.${entity};
 import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
-import java.util.List;
-import com.github.pagehelper.PageHelper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import cn.zm.common.ObjectConvert;
+import java.util.stream.Collectors;
+import cn.zm.modules.entity.dto.${entity? cap_first}DTO;
+import cn.zm.modules.entity.vo.${entity? cap_first}VO;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 <#if kotlin>
-    open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
 
-    }
+}
 <#else>
-    public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
-
-    @Autowired
-    ${table.mapperName} ${package.ModuleName}Mapper;
-
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
     @Override
-    public void add(${entity} ${package.ModuleName}) {
-    ${package.ModuleName}Mapper.add(${package.ModuleName});
+    public IPage<${entity? cap_first}VO> selectByPage(IPage<${entity}> page, ${entity? cap_first}DTO ${table.name}) {
+        IPage<${entity}> ${table.name}Page = baseMapper.selectPage(page, new LambdaQueryWrapper<>());
+        return buildPage(${table.name}Page);
     }
-
-    @Override
-    public void del(String ${package.ModuleName}_id) {
-    ${package.ModuleName}Mapper.del(${package.ModuleName}_id);
+    /**
+    * 获取 vo 分页数据
+    *
+    * @param page do 分页数据
+    * @return vo 分页数据
+    */
+    private IPage<${entity? cap_first}VO> buildPage(IPage<${entity}> page){
+        IPage<${entity? cap_first}VO> pageViews = new Page<>();
+            BeanUtil.copyProperties(page, pageViews);
+            pageViews.setRecords(page.getRecords()
+            .stream()
+            .map(ObjectConvert::convert)
+            .collect(Collectors.toList()));
+        return pageViews;
     }
-
-    @Override
-    public void update(${entity} ${package.ModuleName}) {
-    ${package.ModuleName}Mapper.update(${package.ModuleName});
-    }
-
-
-    @Override
-    public ${entity} getById(String ${package.ModuleName}_id) {
-    return ${package.ModuleName}Mapper.getById(${package.ModuleName}_id);
-    }
-
-    @Override
-    public List<${entity}> get(${entity} ${package.ModuleName}) {
-    List<${entity}> ${package.ModuleName}List = ${package.ModuleName}Mapper.get(${package.ModuleName});
-    return ${package.ModuleName}List;
-    }
-
-    @Override
-    public List<${entity}> get(${entity} ${package.ModuleName}, int pageNum, int pageSize) {
-    PageHelper.startPage(pageNum, pageSize);
-    List<${entity}> ${package.ModuleName}List = ${package.ModuleName}Mapper.get(${package.ModuleName});
-    return ${package.ModuleName}List;
-    }
-
-    }
+}
 </#if>
