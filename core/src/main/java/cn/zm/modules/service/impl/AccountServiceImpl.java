@@ -14,15 +14,17 @@ import cn.zm.common.ObjectConvert;
 import java.util.stream.Collectors;
 import cn.zm.modules.entity.dto.AccountDTO;
 import cn.zm.modules.entity.vo.AccountVO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> implements IAccountService {
     @Override
     public IPage<AccountVO> selectByPage(IPage<Account> page, AccountDTO account) {
-        IPage<Account> accountPage = baseMapper.selectPage(page, new LambdaQueryWrapper<>());
+        IPage<Account> accountPage = baseMapper.selectPage(page, new QueryWrapper<>());
         return buildPage(accountPage);
     }
+
     /**
     * 获取 vo 分页数据
     *
@@ -30,9 +32,9 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
     * @return vo 分页数据
     */
     private IPage<AccountVO> buildPage(IPage<Account> page){
-        IPage<AccountVO> pageViews = new Page<>();
-            BeanUtil.copyProperties(page, pageViews);
-            pageViews.setRecords(page.getRecords()
+        IPage<AccountVO> pageViews = new Page<AccountVO>();
+        BeanUtil.copyProperties(page, pageViews);
+        pageViews.setRecords(page.getRecords()
             .stream()
             .map(ObjectConvert::convert)
             .collect(Collectors.toList()));
