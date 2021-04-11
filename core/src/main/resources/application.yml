@@ -7,6 +7,6 @@ spring:
 # mybatis-plus config
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml   #XML文件路径
-  type-aliases-package: cn.zm.modules
+  type-aliases-package: cn.zm.web
   generate:
     package: cn.zm

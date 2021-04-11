@@ -1,10 +1,10 @@
-package cn.zm.modules.service;
+package cn.zm.web.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import cn.zm.modules.entity.Account;
+import cn.zm.web.entity.Account;
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.zm.modules.entity.dto.AccountDTO;
-import cn.zm.modules.entity.vo.AccountVO;
+import cn.zm.web.entity.dto.AccountDTO;
+import cn.zm.web.entity.vo.AccountVO;
 
 public interface IAccountService extends IService<Account> {
     /**

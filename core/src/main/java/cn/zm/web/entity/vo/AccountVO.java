@@ -1,4 +1,4 @@
-package cn.zm.modules.entity.vo;
+package cn.zm.web.entity.vo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;

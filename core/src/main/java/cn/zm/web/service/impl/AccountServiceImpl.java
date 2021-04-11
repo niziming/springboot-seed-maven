@@ -1,8 +1,8 @@
-package cn.zm.modules.service.impl;
+package cn.zm.web.service.impl;
 
-import cn.zm.modules.entity.Account;
-import cn.zm.modules.mapper.AccountMapper;
-import cn.zm.modules.service.IAccountService;
+import cn.zm.web.entity.Account;
+import cn.zm.web.mapper.AccountMapper;
+import cn.zm.web.service.IAccountService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,8 +12,8 @@ import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import cn.zm.common.ObjectConvert;
 import java.util.stream.Collectors;
-import cn.zm.modules.entity.dto.AccountDTO;
-import cn.zm.modules.entity.vo.AccountVO;
+import cn.zm.web.entity.dto.AccountDTO;
+import cn.zm.web.entity.vo.AccountVO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 @Service
@@ -24,7 +24,6 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
         IPage<Account> accountPage = baseMapper.selectPage(page, new QueryWrapper<>());
         return buildPage(accountPage);
     }
-
     /**
     * 获取 vo 分页数据
     *
@@ -32,9 +31,9 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
     * @return vo 分页数据
     */
     private IPage<AccountVO> buildPage(IPage<Account> page){
-        IPage<AccountVO> pageViews = new Page<AccountVO>();
-        BeanUtil.copyProperties(page, pageViews);
-        pageViews.setRecords(page.getRecords()
+        IPage<AccountVO> pageViews = new Page<>();
+            BeanUtil.copyProperties(page, pageViews);
+            pageViews.setRecords(page.getRecords()
             .stream()
             .map(ObjectConvert::convert)
             .collect(Collectors.toList()));

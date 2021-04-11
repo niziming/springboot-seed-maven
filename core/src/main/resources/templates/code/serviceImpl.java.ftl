@@ -12,8 +12,8 @@ import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import cn.zm.common.ObjectConvert;
 import java.util.stream.Collectors;
-import cn.zm.modules.entity.dto.${entity? cap_first}DTO;
-import cn.zm.modules.entity.vo.${entity? cap_first}VO;
+import cn.zm.web.entity.dto.${entity? cap_first}DTO;
+import cn.zm.web.entity.vo.${entity? cap_first}VO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 @Service

@@ -1,12 +1,12 @@
-package cn.zm.modules.controller;
+package cn.zm.web.controller;
 
-import cn.zm.modules.service.IAccountService;
+import cn.zm.web.service.IAccountService;
 import org.springframework.web.bind.annotation.RestController;
 import cn.zm.common.BaseController;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import cn.zm.common.ResponseResult;
-import cn.zm.modules.entity.dto.AccountDTO;
-import cn.zm.modules.entity.vo.AccountVO;
+import cn.zm.web.entity.dto.AccountDTO;
+import cn.zm.web.entity.vo.AccountVO;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -22,7 +22,7 @@ import java.util.Objects;
  * </p>
  *
  * @author jermaine
- * @since 2021-04-09
+ * @since 2021-04-11
  */
 @RequestMapping("account")
 @RestController

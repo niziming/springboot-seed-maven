@@ -1,6 +1,6 @@
-package cn.zm.modules.mapper;
+package cn.zm.web.mapper;
 
-import cn.zm.modules.entity.Account;
+import cn.zm.web.entity.Account;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 public interface AccountMapper extends BaseMapper<Account> {

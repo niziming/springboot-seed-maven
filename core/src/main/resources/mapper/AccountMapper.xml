@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.zm.modules.mapper.AccountMapper">
+<mapper namespace="cn.zm.web.mapper.AccountMapper">
 
     <!--<insert id="add"-->
     <!--        useGeneratedKeys="true"-->
     <!--        keyProperty="modules_id"-->
-    <!--        parameterType="cn.zm.modules.entity.Account">-->
+    <!--        parameterType="cn.zm.web.entity.Account">-->
     <!--    insert into account(-->
     <!--            id,-->
     <!--            name,-->
@@ -18,8 +18,8 @@
     <!--</insert>-->
 
     <!--<select id="get"-->
-    <!--        parameterType="cn.zm.modules.entity.Account"-->
-    <!--        resultType="cn.zm.modules.entity.Account">-->
+    <!--        parameterType="cn.zm.web.entity.Account"-->
+    <!--        resultType="cn.zm.web.entity.Account">-->
     <!--    select-->
     <!--        v.id,-->
     <!--        v.name,-->
@@ -37,8 +37,8 @@
     <!--</select>-->
 
     <!--<select id="getById"-->
-    <!--        parameterType="cn.zm.modules.entity.Account"-->
-    <!--        resultType="cn.zm.modules.entity.Account">-->
+    <!--        parameterType="cn.zm.web.entity.Account"-->
+    <!--        resultType="cn.zm.web.entity.Account">-->
     <!--    select-->
     <!--        v.id,-->
     <!--        v.name,-->
@@ -52,7 +52,7 @@
     <!--</select>-->
 
     <!--<update id="update"-->
-    <!--        parameterType="cn.zm.modules.entity.Account">-->
+    <!--        parameterType="cn.zm.web.entity.Account">-->
     <!--    update account v-->
     <!--    set v.modules_id = #{modules_id}-->
     <!--            <if test="id != null and id != ''"> , v.id-->

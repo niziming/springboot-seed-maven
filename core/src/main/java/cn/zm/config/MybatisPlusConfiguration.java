@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @Configuration
 @EnableCaching(proxyTargetClass = true)
-@MapperScan("cn.zm.modules.mapper")
+@MapperScan("cn.zm.web.mapper")
 public class MybatisPlusConfiguration {
 
     /**

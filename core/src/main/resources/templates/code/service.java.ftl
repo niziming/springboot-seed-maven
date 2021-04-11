@@ -3,8 +3,8 @@ package ${package.Service};
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import ${package.Entity}.${entity};
 import ${superServiceClassPackage};
-import cn.zm.modules.entity.dto.${entity? cap_first}DTO;
-import cn.zm.modules.entity.vo.${entity? cap_first}VO;
+import cn.zm.web.entity.dto.${entity? cap_first}DTO;
+import cn.zm.web.entity.vo.${entity? cap_first}VO;
 <#--import ${package.Entity}.${};-->
 
 <#if kotlin>

@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.zm</groupId>
-    <artifactId>SpringBoot-Maven</artifactId>
+    <artifactId>springboot-seed-maven</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>SpringBoot-Maven</name>
+    <name>springboot-seed-maven</name>
     <description>Demo project for Spring Boot</description>
 
     <modules>

@@ -84,7 +84,7 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("modules");
+        pc.setModuleName("web");
         pc.setParent(packageName);
         pc.setEntity("entity");
         pc.setController("controller");
@@ -210,7 +210,7 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("modules");
+        pc.setModuleName("web");
         pc.setParent(packageName);
         pc.setEntity("entity.dto");
         pc.setController("controller");
@@ -336,7 +336,7 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("modules");
+        pc.setModuleName("web");
         pc.setParent(packageName);
         pc.setEntity("entity.vo");
         //pc.setController("controller");
