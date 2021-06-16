@@ -1,7 +1,5 @@
 package cn.zm.netty.handler;
 
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * TextWebSocketFrame类型， 表示一个文本帧
+ *
  * @author sixiaojie
  * @date 2020-03-28-13:47
  */
@@ -26,9 +25,21 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
      */
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
-        log.info("handlerAdded 被调用"+ctx.channel().id().asLongText());
+        log.info("handlerAdded");
+        log.info("[{}]连接服务-当前连接数[{}]", ctx.channel().id().asLongText().substring(52), NettyHandler.getUserChannelMap().entrySet().size() + 1);
+
+        // 获取用户ID,关联channel
+        NettyHandler.getUserChannelMap().put(ctx.channel().id().asLongText(), ctx.channel());
+
         // 添加到channelGroup 通道组
         NettyHandler.getChannelGroup().add(ctx.channel());
+        ctx.channel().writeAndFlush(new TextWebSocketFrame("客户端已注册,服务器连接成功！"));
+    }
+
+    @Override
+    public void channelRegistered(ChannelHandlerContext ctx) {
+        log.info("channelRegistered");
+        ctx.channel().writeAndFlush(new TextWebSocketFrame("客户端已注册,服务器连接成功！"));
     }
 
     /**
@@ -36,45 +47,45 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
-        log.info("服务器收到消息：{}",msg.text());
-
+        String uid = ctx.channel().id().asLongText();
         // 获取用户ID,关联channel
-        JSONObject jsonObject = JSONUtil.parseObj(msg.text());
-        String uid = jsonObject.getStr("uid");
-        NettyHandler.getUserChannelMap().put(uid,ctx.channel());
+        // JSONObject jsonObject = JSONUtil.parseObj(msg.text());
+        // String uid = jsonObject.getStr("uid");
+        // NettyHandler.getUserChannelMap().put(uid, ctx.channel());
+
+        log.info("服务器收到[{}]的消息{}", uid.substring(52), msg.text());
 
         // 将用户ID作为自定义属性加入到channel中，方便随时channel中获取用户ID
         AttributeKey<String> key = AttributeKey.valueOf("userId");
         ctx.channel().attr(key).setIfAbsent(uid);
 
-        // 回复消息
-        ctx.channel().writeAndFlush(new TextWebSocketFrame("服务器连接成功！"));
     }
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-        log.info("handlerRemoved 被调用"+ctx.channel().id().asLongText());
+        log.info("uid[{}]断开连接", ctx.channel().id().asLongText().substring(52));
         // 删除通道
-        NettyHandler.getChannelGroup().remove(ctx.channel());
-        removeUserId(ctx);
+        removeChannel(ctx);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        log.info("异常：{}",cause.getMessage());
+        log.info("[{}]异常[{}]", ctx.channel().id().asLongText(), cause.getMessage());
         // 删除通道
-        NettyHandler.getChannelGroup().remove(ctx.channel());
-        removeUserId(ctx);
-        ctx.close();
+        removeChannel(ctx);
     }
 
     /**
      * 删除用户与channel的对应关系
+     *
      * @param ctx
      */
-    private void removeUserId(ChannelHandlerContext ctx){
+    private void removeChannel(ChannelHandlerContext ctx) {
         AttributeKey<String> key = AttributeKey.valueOf("userId");
         String userId = ctx.channel().attr(key).get();
         NettyHandler.getUserChannelMap().remove(userId);
+        NettyHandler.getChannelGroup().remove(ctx.channel());
+        ctx.close();
+        log.info("当前连接数[{}]", NettyHandler.getUserChannelMap().entrySet().size() + 1);
     }
 }

@@ -1,4 +1,4 @@
-package cn.zm.enums;
+package cn.zm.common.enums;
 
 /**
  * @author Mr_W

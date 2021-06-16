@@ -1,4 +1,4 @@
-package cn.zm.common;
+package cn.zm.common.config;
 
 
 import cn.zm.common.enums.ResultEnum;

@@ -97,9 +97,9 @@ public class NettyServer {
                 ch.pipeline().addLast(new WebSocketServerProtocolHandler(webSocketPath, WEBSOCKET_PROTOCOL, true, 65536 * 10));
                 // 自定义的handler，处理业务逻辑
                 ch.pipeline().addLast(webSocketHandler);
-
             }
         });
+
         // 配置完成，开始绑定server，通过调用sync同步方法阻塞直到绑定成功
         ChannelFuture channelFuture = bootstrap.bind().sync();
         log.info("Server started and listen on:{}", channelFuture.channel().localAddress());

@@ -1,6 +1,8 @@
 package cn.zm.web.controller;
 
+import cn.zm.common.config.ResponseResult;
 import cn.zm.netty.service.PushService;
+import com.baomidou.mybatisplus.extension.api.R;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +23,9 @@ public class PushController {
      * @param msg
      */
     @PostMapping("/pushAll")
-    public void pushToAll(@RequestParam("msg") String msg){
+    public ResponseResult pushToAll(@RequestParam("msg") String msg){
         pushService.pushMsgToAll(msg);
+        return ResponseResult.succ("发送成功-" + msg);
     }
     /**
      * 推送给指定用户
@@ -30,8 +33,9 @@ public class PushController {
      * @param msg
      */
     @PostMapping("/pushOne")
-    public void pushMsgToOne(@RequestParam("userId") String userId,@RequestParam("msg") String msg){
+    public ResponseResult pushMsgToOne(@RequestParam("userId") String userId,@RequestParam("msg") String msg){
         pushService.pushMsgToOne(userId,msg);
+        return ResponseResult.succ("发送成功-id: " + userId + "-msg: " + msg);
     }
 
 }
