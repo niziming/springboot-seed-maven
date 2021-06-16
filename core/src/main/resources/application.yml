@@ -10,3 +10,9 @@ mybatis-plus:
   type-aliases-package: cn.zm.web
   generate:
     package: cn.zm
+
+config:
+  netty:
+    websocket:
+      path: /ws
+      port: 9001

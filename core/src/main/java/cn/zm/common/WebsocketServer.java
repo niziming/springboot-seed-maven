@@ -1,5 +1,6 @@
 package cn.zm.common;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -14,9 +15,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * ws 服务端
  */
 @Component
+@Slf4j
 @ServerEndpoint("/ws")
 public class WebsocketServer {
-    private static final Logger LOGGER = LoggerFactory.getLogger(WebsocketServer.class);
 
     /**
      * 存放所有在线的客户端
@@ -27,7 +28,7 @@ public class WebsocketServer {
     public void onOpen(Session session) {
         //将新用户存入在线的组
         clients.put(session.getId(), session);
-        LOGGER.info("ID:{}连接-目前连接{}", session.getId(), clients.keySet().toArray(new String[0]));
+        log.info("ID:{}连接-目前连接{}", session.getId(), clients.keySet().toArray(new String[0]));
     }
 
     /**
@@ -38,7 +39,7 @@ public class WebsocketServer {
     public void onClose(Session session) {
         //将掉线的用户移除在线的组里
         clients.remove(session.getId());
-        LOGGER.info("ID:{}断开-目前连接{}", session.getId(), Arrays.toString(clients.keySet().toArray(new String[0])));
+        log.info("ID:{}断开-目前连接{}", session.getId(), Arrays.toString(clients.keySet().toArray(new String[0])));
     }
 
     /**
@@ -56,7 +57,7 @@ public class WebsocketServer {
      */
     @OnMessage
     public void onMessage(String message) {
-        LOGGER.info("收到:{}", message);
+        log.info("收到:{}", message);
     }
 
     /**

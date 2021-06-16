@@ -1,6 +1,8 @@
 package cn.zm.web.controller;
 
+import cn.zm.common.config.GlobalConfig;
 import cn.zm.web.service.IAccountService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 import cn.zm.common.BaseController;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -26,11 +28,32 @@ import java.util.Objects;
  */
 @RequestMapping("account")
 @RestController
-@Api(tags = "")
+@Api(tags = "用户接口")
 public class AccountController extends BaseController {
 
     @Resource
     private IAccountService accountService;
+
+    @Value("${server.port}")
+    private String port;
+
+    @Resource
+    private GlobalConfig globalConfig;
+
+    @GetMapping("globalConfig")
+    @ApiOperation("全局配置")
+    public ResponseResult globalConfig() {
+        // TODO 修改
+        return ResponseResult.succ(globalConfig);
+    }
+
+    @GetMapping("port")
+    @ApiOperation("端口配置")
+    public ResponseResult port() {
+        // TODO 修改
+        return ResponseResult.succ(port);
+    }
+
 
     @GetMapping
     @ApiOperation("查询")

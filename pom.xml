@@ -10,6 +10,8 @@
 
     <modules>
         <module>core</module>
+        <module>netty</module>
+        <module>common</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -37,9 +39,16 @@
         <fastjson.version>1.2.58</fastjson.version>
         <sentinel.dubbo.version>1.8.0</sentinel.dubbo.version>
         <mybatis-plus-generator.version>3.2.0</mybatis-plus-generator.version>
+        <netty.version>4.1.33.Final</netty.version>
     </properties>
 
     <dependencies>
+        <!--netty-->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+
         <!-- web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -160,6 +169,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+
             <!-- spring-cloud -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
