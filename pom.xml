@@ -39,7 +39,7 @@
         <fastjson.version>1.2.58</fastjson.version>
         <sentinel.dubbo.version>1.8.0</sentinel.dubbo.version>
         <mybatis-plus-generator.version>3.2.0</mybatis-plus-generator.version>
-        <netty.version>4.1.33.Final</netty.version>
+        <netty.version>4.1.42.Final</netty.version>
     </properties>
 
     <dependencies>
