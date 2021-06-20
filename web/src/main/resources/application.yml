@@ -1,0 +1,12 @@
+# spring config
+spring:
+  application:
+    name: seed
+  profiles:
+    active: dev, mybatis-plus
+# global config
+config:
+  netty:
+    websocket:
+      path: /ws
+      port: 9010
