@@ -4,6 +4,7 @@ import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,10 +21,8 @@ import java.util.Optional;
  * @date 2021/2/20 18:50
  * @description 基础控制器
  */
+@Slf4j
 public class  BaseController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
-
     private final static String PAGE = "page";
 
     private final static String SIZE = "size";
@@ -39,7 +38,7 @@ public class  BaseController {
      */
     protected <T> IPage<T> getPage() {
         HttpServletRequest request = getRequest();
-        LOGGER.debug("当前页数: [{}], 每页数量: [{}], 排序字段: [{}], 是否降序: [{}]",
+        log.debug("当前页数: [{}], 每页数量: [{}], 排序字段: [{}], 是否降序: [{}]",
                 request.getParameter(PAGE),
                 request.getParameter(SIZE),
                 request.getParameter(ORDER_BY_COLUMN),

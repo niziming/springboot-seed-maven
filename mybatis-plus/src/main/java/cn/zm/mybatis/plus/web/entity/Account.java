@@ -13,7 +13,7 @@ import cn.zm.mybatis.plus.web.entity.vo.AccountVO;
 @Data
 @Accessors(chain = true)
 @TableName("account")
-@ApiModel(value="Account对象", description="")
+@ApiModel(value="Account对象", description="用户表")
 public class Account extends ObjectConvert<AccountVO>{
     @ApiModelProperty(value = "用户ID")
     @TableId(value = "id", type = IdType.AUTO)

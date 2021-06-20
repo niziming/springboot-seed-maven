@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @TableName("account")
-@ApiModel(value="AccountVO对象", description="")
+@ApiModel(value="AccountVO对象", description="用户表")
 public class AccountVO {
     @ApiModelProperty(value = "用户ID")
     @TableId(value = "id", type = IdType.AUTO)

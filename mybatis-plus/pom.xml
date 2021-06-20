@@ -22,26 +22,22 @@
             <groupId>cn.zm</groupId>
             <artifactId>common</artifactId>
         </dependency>
-
         <!-- mysql-connector -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-
-        <!-- mybatis-plus -->
+        <!--mybatis-plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
-
         <!--代码生成相关依赖-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
             <scope>compile</scope>
         </dependency>
-
         <!--freemarker模板引擎-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
