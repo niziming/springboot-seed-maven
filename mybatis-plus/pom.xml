@@ -22,11 +22,8 @@
             <groupId>cn.zm</groupId>
             <artifactId>common</artifactId>
         </dependency>
-        <!-- mysql-connector -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+
+
         <!--mybatis-plus -->
         <dependency>
             <groupId>com.baomidou</groupId>

@@ -7,8 +7,8 @@ import ${superServiceImplClassPackage};
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import cn.zm.mybatis.plus.web.entity.dto.${entity? cap_first}DTO;
-import cn.zm.mybatis.plus.web.entity.vo.${entity? cap_first}VO;
+import cn.zm.plus.web.entity.dto.${entity? cap_first}DTO;
+import cn.zm.plus.web.entity.vo.${entity? cap_first}VO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import ${package.Service?substring(0, package.Service? index_of("web.service"))}utils.ConvertUtil;
 
