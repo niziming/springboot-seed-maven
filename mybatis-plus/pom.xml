@@ -23,18 +23,19 @@
             <artifactId>common</artifactId>
         </dependency>
 
-
         <!--mybatis-plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
+
         <!--代码生成相关依赖-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
             <scope>compile</scope>
         </dependency>
+
         <!--freemarker模板引擎-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,12 +1,12 @@
 package cn.zm.plus.web.controller;
 
 import cn.zm.plus.web.service.IAccountService;
-import cn.zm.plus.web.entity.dto.AccountDTO;
-import cn.zm.plus.web.entity.vo.AccountVO;
 import org.springframework.web.bind.annotation.RestController;
 import cn.zm.plus.config.BaseController;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import cn.zm.common.common.ResponseResult;
+import cn.zm.plus.web.entity.dto.AccountDTO;
+import cn.zm.plus.web.entity.vo.AccountVO;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -17,20 +17,20 @@ import javax.annotation.Resource;
 import java.util.Objects;
 
 /**
- * 用户表
+ * 
  * @author jermaine
- * @since 2021-06-20
+ * @since 2021-06-21
  */
 @RequestMapping("account")
 @RestController
-@Api(tags = "用户表")
+@Api(tags = "用户接口")
 public class AccountController extends BaseController {
 
     @Resource
     private IAccountService accountService;
 
     @GetMapping
-    @ApiOperation("用户表查询")
+    @ApiOperation("查询")
     @ApiImplicitParams({
         @ApiImplicitParam(name = "page", value = "当前页数", defaultValue = "1"),
         @ApiImplicitParam(name = "size", value = "每页个数", defaultValue = "10"),
@@ -44,7 +44,7 @@ public class AccountController extends BaseController {
     }
 
     @GetMapping("{id}")
-    @ApiOperation("用户表查询(id)")
+    @ApiOperation("查询(id)")
     public ResponseResult<AccountVO> get(@PathVariable String id) {
         // TODO 查询
         boolean aNull = Objects.isNull(accountService.getById(id));
@@ -52,7 +52,7 @@ public class AccountController extends BaseController {
     }
 
     @PostMapping
-    @ApiOperation("用户表新增")
+    @ApiOperation("新增")
     public ResponseResult add(@RequestBody @Validated AccountDTO account) {
         // TODO 新增
         accountService.save(account.convert());
@@ -60,7 +60,7 @@ public class AccountController extends BaseController {
     }
 
     @DeleteMapping("{id}")
-    @ApiOperation("用户表删除")
+    @ApiOperation("删除")
     public ResponseResult del(@PathVariable String id) {
         // TODO 删除
         accountService.removeById(id);
@@ -68,7 +68,7 @@ public class AccountController extends BaseController {
     }
 
     @PutMapping
-    @ApiOperation("用户表修改")
+    @ApiOperation("修改")
     public ResponseResult update(@RequestBody @Validated AccountDTO account) {
         // TODO 修改
         accountService.updateById(account.convert());

@@ -39,15 +39,17 @@
         <hutool.version>5.3.10</hutool.version>
         <fastjson.version>1.2.58</fastjson.version>
         <druid.version>1.1.22</druid.version>
+        <tk.version>2.1.2</tk.version>
+        <pagehelper.version>1.3.0</pagehelper.version>
     </properties>
 
     <dependencies>
-        <!--SpringBoot 热部署依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+        <!--SpringBoot热部署依赖 如果无热部署插件可以放开这里的注释-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-devtools</artifactId>-->
+            <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
         <!-- test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -58,15 +60,23 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+            <!--tk.mybatis-->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${tk.version}</version>
+            </dependency>
+
             <!--项目总体依赖-->
             <dependency>
                 <groupId>cn.zm</groupId>
                 <artifactId>common</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.zm</groupId>
-                <artifactId>core</artifactId>
                 <version>${revision}</version>
             </dependency>
             <dependency>
@@ -181,7 +191,9 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <!--热部署分支-->
                     <fork>true</fork>
+                    <!--主类-->
                     <mainClass>cn.zm.HelloApplication</mainClass>
                 </configuration>
                 <executions>

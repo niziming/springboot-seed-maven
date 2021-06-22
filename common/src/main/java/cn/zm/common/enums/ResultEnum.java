@@ -1,9 +1,14 @@
 package cn.zm.common.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 /**
  * @author Mr_W
  */
 
+@AllArgsConstructor
+@NoArgsConstructor
 public enum ResultEnum {
 	/**
 	 * 验证失败

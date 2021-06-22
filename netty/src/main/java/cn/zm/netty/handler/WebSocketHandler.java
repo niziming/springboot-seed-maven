@@ -8,6 +8,8 @@ import io.netty.util.AttributeKey;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 /**
  * TextWebSocketFrame类型， 表示一个文本帧
  *
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ChannelHandler.Sharable
 public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
+
     /**
      * 一旦连接，第一个被执行
      * @param ctx
@@ -25,7 +28,6 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
      */
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
-        log.info("handlerAdded");
         log.info("[{}]连接服务-当前连接数[{}]", ctx.channel().id().asLongText().substring(52), NettyHandler.getUserChannelMap().entrySet().size() + 1);
 
         // 获取用户ID,关联channel
@@ -56,8 +58,8 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
         log.info("服务器收到[{}]的消息{}", uid.substring(52), msg.text());
 
         // 将用户ID作为自定义属性加入到channel中，方便随时channel中获取用户ID
-        AttributeKey<String> key = AttributeKey.valueOf("userId");
-        ctx.channel().attr(key).setIfAbsent(uid);
+        // AttributeKey<String> key = AttributeKey.valueOf("userId");
+        // ctx.channel().attr(key).setIfAbsent(uid);
 
     }
 
@@ -81,11 +83,10 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
      * @param ctx
      */
     private void removeChannel(ChannelHandlerContext ctx) {
-        AttributeKey<String> key = AttributeKey.valueOf("userId");
-        String userId = ctx.channel().attr(key).get();
-        NettyHandler.getUserChannelMap().remove(userId);
+        String uid = ctx.channel().id().asLongText();
+        NettyHandler.getUserChannelMap().remove(uid);
         NettyHandler.getChannelGroup().remove(ctx.channel());
         ctx.close();
-        log.info("当前连接数[{}]", NettyHandler.getUserChannelMap().entrySet().size() + 1);
+        log.info("当前连接数[{}]", NettyHandler.getUserChannelMap().entrySet().size());
     }
 }

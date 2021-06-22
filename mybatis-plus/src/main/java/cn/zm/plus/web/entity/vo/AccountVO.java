@@ -12,14 +12,12 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @TableName("account")
-@ApiModel(value="AccountVO对象", description="用户表")
+@ApiModel(value="AccountVO对象", description="")
 public class AccountVO {
-    @ApiModelProperty(value = "用户ID")
+    @ApiModelProperty(value = "主键")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
-    @ApiModelProperty(value = "姓名")
     private String name;
-    @ApiModelProperty(value = "余额")
     private Double money;
 }
 

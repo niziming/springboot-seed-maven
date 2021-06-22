@@ -27,11 +27,15 @@
             <scope>runtime</scope>
         </dependency>
         <!--使用阿里巴巴的druid数据源，有利于监控sql的执行情况-->
-        <!--通用mapper-->
+        <!--tk-->
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>2.1.2</version>
+        </dependency>
+        <!--分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 

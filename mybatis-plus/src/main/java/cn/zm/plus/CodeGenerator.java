@@ -50,7 +50,7 @@ public class CodeGenerator {
 
     public static void main(String[] args) {
         String[] tables = scanner("表名，多个英文逗号分割").split(",");
-        ClassPathResource app = new ClassPathResource("application-plus.yml");
+        ClassPathResource app = new ClassPathResource("gen.yml");
         ClassPathResource[] apps = new ClassPathResource[]{app};
 
         factoryBean.setResources(apps);
