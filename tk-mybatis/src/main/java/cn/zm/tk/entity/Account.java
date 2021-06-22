@@ -1,24 +1,19 @@
 package cn.zm.tk.entity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.experimental.Accessors;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.io.Serializable;
+import javax.persistence.*;
 
 @Data
-@Accessors(chain = true)
-@Table(name = "account")
-@ApiModel(value="Account对象", description="用户表")
-public class Account {
-    @ApiModelProperty(value = "用户ID")
+public class Account implements Serializable {
+    /**
+     * 主键
+     */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ApiModelProperty(value = "姓名")
     private String name;
-    @ApiModelProperty(value = "余额")
     private Double money;
+    private static final long serialVersionUID = 1L;
 }
-

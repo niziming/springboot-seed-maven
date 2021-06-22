@@ -23,7 +23,7 @@ import java.util.Objects;
  */
 @RequestMapping("bd")
 @RestController
-@Api(tags = "")
+@Api(tags = "BD")
 public class BdController extends BaseController {
 
     @Resource

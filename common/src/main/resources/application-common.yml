@@ -1,4 +1,4 @@
-#db
+#db config
 spring:
   datasource:
     druid:

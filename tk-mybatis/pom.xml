@@ -11,20 +11,12 @@
 
     <artifactId>tk-mybatis</artifactId>
 
-    <properties>
-        <maven.compiler.source>9</maven.compiler.source>
-        <maven.compiler.target>9</maven.compiler.target>
-    </properties>
+    <packaging>jar</packaging>
+
     <dependencies>
         <dependency>
             <groupId>cn.zm</groupId>
             <artifactId>common</artifactId>
-        </dependency>
-        <!--连接mysql-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
         </dependency>
         <!--使用阿里巴巴的druid数据源，有利于监控sql的执行情况-->
         <!--tk-->
@@ -43,6 +35,7 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -50,7 +43,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.0.3.RELEASE</version>
             </plugin>
             <!-- MyBatis 逆向工程 插件 -->
             <plugin>
@@ -61,10 +53,12 @@
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.21</version>
                     </dependency>
                     <dependency>
                         <groupId>tk.mybatis</groupId>
-                        <artifactId>mapper-spring-boot-starter</artifactId>
+                        <artifactId>mapper</artifactId>
+                        <version>3.4.4</version>
                     </dependency>
                 </dependencies>
                 <configuration>
@@ -73,9 +67,7 @@
                     <!-- 是否覆盖 -->
                     <overwrite>true</overwrite>
                     <!-- 配置文件 -->
-                    <configurationFile>
-                        src/main/resources/generatorConfig.xml
-                    </configurationFile>
+                    <configurationFile>${basedir}/src/main/resources/generatorConfig.xml</configurationFile>
                 </configuration>
             </plugin>
         </plugins>
