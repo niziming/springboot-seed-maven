@@ -1,0 +1,15 @@
+##################### mybatis ###############################
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+  typeAliasesPackage: cn.zm.tk.entity
+  mapperLocations: classpath*:/mapper/**/*.xml
+
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  pagehelper:
+    params: count=countSql

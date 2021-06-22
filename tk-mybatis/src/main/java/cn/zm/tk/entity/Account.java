@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Accessors(chain = true)
 @Table(name = "account")
 @ApiModel(value="Account对象", description="用户表")
-public class Account{
+public class Account {
     @ApiModelProperty(value = "用户ID")
     @Id
     private Integer id;
