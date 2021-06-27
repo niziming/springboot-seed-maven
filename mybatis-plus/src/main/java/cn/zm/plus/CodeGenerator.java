@@ -112,7 +112,7 @@ public class CodeGenerator {
         //gc.setXmlName("%sMapper");
         //gc.setServiceName("%sService");
         //gc.setServiceImplName("%sServiceImpl");
-        //gc.setControllerName("%sController");
+        // gc.setControllerName("%rest");
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -128,7 +128,7 @@ public class CodeGenerator {
         pc.setModuleName("web");
         pc.setParent(packageName);
         pc.setEntity("entity");
-        pc.setController("controller");
+        pc.setController("rest");
         pc.setService("service");
         pc.setServiceImpl("service.impl");
         pc.setMapper("mapper");
@@ -236,10 +236,7 @@ public class CodeGenerator {
         pc.setModuleName("web");
         pc.setParent(packageName);
         pc.setEntity("entity.dto");
-        pc.setController("controller");
-        pc.setService("service");
-        pc.setServiceImpl("service.impl");
-        pc.setMapper("mapper");
+        pc.setController("rest");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -260,7 +257,7 @@ public class CodeGenerator {
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
         // 公共父类
-        strategy.setSuperControllerClass("cn.zm.plus.config.BaseController");
+        strategy.setSuperControllerClass(packageName + ".config." +"BaseController");
         // 写于父类中的公共字段
         //strategy.setSuperEntityColumns("id");
         strategy.setInclude(tables);
@@ -294,6 +291,7 @@ public class CodeGenerator {
         pc.setModuleName("web");
         pc.setParent(packageName);
         pc.setEntity("entity.vo");
+        pc.setController("rest");
 
         mpg.setPackageInfo(pc);
 
@@ -316,7 +314,7 @@ public class CodeGenerator {
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
         // 公共父类
-        strategy.setSuperControllerClass("cn.zm.plus.config.BaseController");
+        strategy.setSuperControllerClass(packageName + ".config." +"BaseController");
         // 写于父类中的公共字段
         //strategy.setSuperEntityColumns("id");
         strategy.setInclude(tables);
