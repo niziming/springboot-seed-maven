@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,9 +43,9 @@ public class PageBean<T> implements Serializable {
         }
     }
 
-    public PageBean(Page p) {
+    public <E extends ObjectConvert> PageBean(Page<E> p) {
         this.total = p.getTotal();
-        this.rows = p.getResult();
+        this.rows =  p.getResult().stream().map(e -> (T) e.convert()).collect(Collectors.toList());
     }
 
 }

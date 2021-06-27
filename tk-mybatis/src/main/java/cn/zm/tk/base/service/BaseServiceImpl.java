@@ -129,7 +129,8 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
      * @return
      */
     @Override
-    public int deleteById(T record) {
+    public int deleteById(Object record) {
+        // return mapper.delete(record);
         return mapper.deleteByPrimaryKey(record);
     }
 

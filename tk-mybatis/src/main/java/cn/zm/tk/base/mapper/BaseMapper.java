@@ -1,6 +1,7 @@
 package cn.zm.tk.base.mapper;
 
 import cn.zm.tk.func.Tao;
+import org.apache.ibatis.annotations.Delete;
 import tk.mybatis.mapper.annotation.RegisterMapper;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;
@@ -16,7 +17,6 @@ import java.util.List;
  */
 @RegisterMapper
 public interface BaseMapper<T> extends Mapper<T>, MySqlMapper<T>, SelectByIdsMapper<T> {
-
     default List<T> selectByLambda(Tao... taos) {
         return selectByExample(make(taos));
     }

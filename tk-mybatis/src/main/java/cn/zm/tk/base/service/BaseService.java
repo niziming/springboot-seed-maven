@@ -86,10 +86,10 @@ public interface BaseService<T> {
     /**
      * 根据主键删除
      *
-     * @param record
+     * @param key
      * @return
      */
-    int deleteById(T record);
+    int deleteById(Object key);
 
     /**
      * 根据主键更新不为空的字段

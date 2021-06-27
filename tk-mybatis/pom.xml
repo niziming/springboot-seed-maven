@@ -14,6 +14,13 @@
     <packaging>jar</packaging>
 
     <dependencies>
+        <!--代码生成相关依赖-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
         <dependency>
             <groupId>cn.zm</groupId>
             <artifactId>common</artifactId>
