@@ -1,6 +1,6 @@
 package cn.zm.plus;
 
-import cn.zm.common.common.ObjectConvert;
+import cn.zm.plus.config.ObjectConvert;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
