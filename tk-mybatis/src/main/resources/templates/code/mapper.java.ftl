@@ -7,6 +7,7 @@ import com.xr.inspect.data.base.mapper.BaseMapper;
 interface ${table.mapperName} : ${superMapperClass}<${entity}>
 <#else>
 public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
-
+    @Override
+    default Class<?> entityClass () {return ${entity}.class;}
 }
 </#if>
