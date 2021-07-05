@@ -3,6 +3,8 @@ package ${package.Entity};
 import javax.persistence.*;
 <#if swagger2>
 import io.swagger.annotations.ApiModel;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModelProperty;
 </#if>
 <#if entityLombokModel>
@@ -55,21 +57,24 @@ public class ${entity} implements Serializable {
     <#-- 主键 -->
     <#if field.keyIdentityFlag>
     @Id
+    @GeneratedValue(generator = "JDBC")
     <#elseif idType??>
     @Id
+    @GeneratedValue(generator = "JDBC")
     <#elseif field.convert>
     @Id
+    @GeneratedValue(generator = "JDBC")
     </#if>
     <#-- 普通字段 -->
     <#elseif field.fill??>
     <#-- -----   存在字段填充设置   ----->
-    <#if field.convert>
-    @TableField(value = "${field.name}", fill = FieldFill.${field.fill})
-    <#else>
-    @TableField(fill = FieldFill.${field.fill})
-    </#if>
-    <#elseif field.convert>
-    @TableField("${field.name}")
+    <#--<#if field.convert>-->
+    <#--@TableColumn(value = "${field.name}", fill = FieldFill.${field.fill})-->
+    <#--<#else>-->
+    <#--@TableColumn(fill = FieldFill.${field.fill})-->
+    <#--</#if>-->
+    <#--<#elseif field.convert>-->
+    <#--@TableColumn("${field.name}")-->
     </#if>
     <#-- 乐观锁注解 -->
     <#if (versionFieldName!"") == field.name>
