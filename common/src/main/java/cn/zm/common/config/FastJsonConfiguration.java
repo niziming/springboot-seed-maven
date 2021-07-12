@@ -17,7 +17,7 @@ public class FastJsonConfiguration {
     @Bean
     public HttpMessageConverter configureMessageConverters() {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
-        FastJsonConfig config = new com.alibaba.fastjson.support.config.FastJsonConfig();
+        FastJsonConfig config = new FastJsonConfig();
         config.setSerializerFeatures(
                 // 保留map空的字段
                 SerializerFeature.WriteMapNullValue,
@@ -31,7 +31,7 @@ public class FastJsonConfiguration {
                 SerializerFeature.WriteNullBooleanAsFalse,
                 // 避免循环引用
                 SerializerFeature.DisableCircularReferenceDetect);
-
+        config.setDateFormat("yyyy-MM-dd HH:mm:ss"); // 时间格式
         converter.setFastJsonConfig(config);
         converter.setDefaultCharset(Charset.forName("UTF-8"));
         List<MediaType> mediaTypeList = new ArrayList<>();
