@@ -4,10 +4,14 @@ import cn.zm.tk.func.ListFunc;
 import cn.zm.tk.base.mapper.BaseMapper;
 import cn.zm.tk.utils.PageBean;
 import com.github.pagehelper.PageHelper;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -78,6 +82,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
     public List<T> selectByIds(List<Long> ids) {
         return mapper.selectByIds(ids);
     }
+
     /**
      * 保存
      *
@@ -156,5 +161,24 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
         PageHelper.startPage(pageNum, pageSize);
         List<T> list = func.list();
         return new PageBean<T>(list);
+    }
+
+    public List<T> likeByProperty(T record) {
+        Class<?> aClass = record.getClass();
+        Field[] fields = aClass.getDeclaredFields();
+        Example example = new Example(aClass);
+        Example.Criteria criteria = example.createCriteria();
+        try {
+            for (Field field : fields) {
+                field.setAccessible(true);
+                // if (ObjectUtils.isNotEmpty(field.get(record)) && field.get(record) instanceof String) {
+                if (ObjectUtils.isNotEmpty(field.get(record))) {
+                    criteria.andLike(field.getName(),  "%"+field.get(record)+"%");
+                }
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return mapper.selectByExample(example);
     }
 }

@@ -2,7 +2,9 @@ package cn.zm.tk.web.rest;
 
 import cn.zm.common.common.ResponseResult;
 import cn.zm.tk.base.BaseController;
+import cn.zm.tk.utils.ConvertUtil;
 import cn.zm.tk.utils.PageBean;
+import cn.zm.tk.web.entity.Account;
 import cn.zm.tk.web.entity.dto.AccountDTO;
 import cn.zm.tk.web.entity.vo.AccountVO;
 import cn.zm.tk.web.service.IAccountService;
@@ -15,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -38,11 +41,14 @@ public class AccountController extends BaseController {
         @ApiImplicitParam(name = "orderByColumn", value = "排序字段"),
         @ApiImplicitParam(name = "isDesc", value = "是否降序")
     })
-    public ResponseResult<PageBean<AccountVO>> page(AccountDTO accountDTO) {
+    public ResponseResult<List<AccountVO>> page(AccountDTO accountDTO) throws IllegalAccessException {
         // TODO 分页查询
-        Page<AccountVO> page = getPage();
-        accountService.selectByProperty(accountDTO.convert());
-        return ResponseResult.succ(new PageBean(page));
+        // Page<AccountVO> page = getPage();
+        // accountService.selectByProperty(accountDTO.convert());
+        Account convert = accountDTO.convert();
+        List<Account> accounts = accountService.likeByProperty(convert);
+        return ResponseResult.succ(ConvertUtil.convertList(accounts));
+
     }
 
 

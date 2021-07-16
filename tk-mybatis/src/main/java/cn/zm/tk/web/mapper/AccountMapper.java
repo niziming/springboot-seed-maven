@@ -5,7 +5,7 @@ import cn.zm.tk.web.entity.Account;
 
 public interface AccountMapper extends BaseMapper<Account> {
     @Override
-    default Class<?> entityClass() {
+    default Class entityClass() {
         return Account.class;
     }
 }

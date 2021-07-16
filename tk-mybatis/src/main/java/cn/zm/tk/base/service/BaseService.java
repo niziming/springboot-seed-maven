@@ -3,7 +3,11 @@ package cn.zm.tk.base.service;
 import cn.zm.tk.func.ListFunc;
 import cn.zm.tk.func.Tao;
 import cn.zm.tk.utils.PageBean;
+import org.apache.commons.lang3.ObjectUtils;
+import tk.mybatis.mapper.entity.Example;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -118,5 +122,13 @@ public interface BaseService<T> {
      * @return
      */
     PageBean<T> selectPageByFunc(ListFunc<T> func, Integer pageSize, Integer pageNum);
+
+    /**
+     *
+     * @param recards
+     * @return
+     */
+    List<T> likeByProperty(T recards) throws IllegalAccessException;
+
 
 }
