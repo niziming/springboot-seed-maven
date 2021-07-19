@@ -157,12 +157,14 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
         return new PageBean<T>(list);
     }
 
+    @Override
     public PageBean<T> selectPageByFunc(ListFunc<T> func, Integer pageSize, Integer pageNum) {
         PageHelper.startPage(pageNum, pageSize);
         List<T> list = func.list();
         return new PageBean<T>(list);
     }
 
+    @Override
     public List<T> likeByProperty(T record) {
         Class<?> aClass = record.getClass();
         Field[] fields = aClass.getDeclaredFields();
