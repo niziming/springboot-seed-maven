@@ -1,5 +1,6 @@
 package cn.zm.tk.web.entity;
 
+import cn.zm.tk.anno.Like;
 import cn.zm.tk.utils.ObjectConvert;
 import cn.zm.tk.web.entity.vo.AccountVO;
 import io.swagger.annotations.ApiModel;
@@ -25,6 +26,7 @@ public class Account extends ObjectConvert<AccountVO> {
     @Id
     @ApiModelProperty(value = "用户标识")
     private Integer id;
+    @Like
     @ApiModelProperty(value = "姓名")
     private String name;
     @ApiModelProperty(value = "余额")

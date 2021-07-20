@@ -1,5 +1,6 @@
 package cn.zm.tk.base.service;
 
+import cn.zm.tk.anno.Like;
 import cn.zm.tk.func.ListFunc;
 import cn.zm.tk.base.mapper.BaseMapper;
 import cn.zm.tk.utils.PageBean;
@@ -173,9 +174,14 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
         try {
             for (Field field : fields) {
                 field.setAccessible(true);
+                Like like = field.getDeclaredAnnotation(Like.class);
                 // if (ObjectUtils.isNotEmpty(field.get(record)) && field.get(record) instanceof String) {
                 if (ObjectUtils.isNotEmpty(field.get(record))) {
-                    criteria.andLike(field.getName(),  "%"+field.get(record)+"%");
+                    if (ObjectUtils.isNotEmpty(like)) {
+                        criteria.andLike(field.getName(),  "%"+field.get(record)+"%");
+                    } else {
+                        criteria.andEqualTo(field.getName(),  field.get(record));
+                    }
                 }
             }
         } catch (IllegalAccessException e) {
