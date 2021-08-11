@@ -21,6 +21,7 @@
         <module>common</module>
         <!--<module>mybatis-plus</module>-->
         <module>tk-mybatis</module>
+        <module>async-programing</module>
     </modules>
 
     <packaging>pom</packaging>

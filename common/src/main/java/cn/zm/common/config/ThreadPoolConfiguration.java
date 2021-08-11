@@ -21,8 +21,11 @@ public class ThreadPoolConfiguration {
 	@ConditionalOnMissingBean(name = "EducationThreadPool")
 	public ThreadPoolTaskExecutor threadPoolTaskExecutor() {
 		ThreadPoolTaskExecutor pool = new ThreadPoolTaskExecutor();
+		// 核心数
 		pool.setCorePoolSize(Runtime.getRuntime().availableProcessors() + 1);
+		// 最大容量
 		pool.setMaxPoolSize(Runtime.getRuntime().availableProcessors() * 2 + 2);
+		// 队列容量
 		pool.setQueueCapacity(50);
 		pool.setThreadNamePrefix(applicationName + "-");
 		return pool;

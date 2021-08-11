@@ -25,7 +25,11 @@ import java.util.List;
 public class GlobalExceptionHandler {
 	@ExceptionHandler(value = Exception.class)
 	public ResponseResult internalErrorHandler(Exception e) {
-		log.error("happened serviceException, Caused by " + getMessage(e), e);
+		log.error("happened serviceException, Caused by " +
+				"\n\n ------------------------------------" +
+				"--------------ERROR INFO------------" +
+				"--------------------------------------"
+				+ getMessage(e), e);
 		ResponseResult r;
 		if (e instanceof ServiceException) {
 			r = ResponseResult.fail(StringUtils.isBlank(((ServiceException) e).getAlertMessage()) ? e.getMessage() : ((ServiceException) e).getAlertMessage());
@@ -34,7 +38,6 @@ public class GlobalExceptionHandler {
 		} else {
 			r = ResponseResult.fail(null);
 		}
-		e.printStackTrace();
 		return r;
 	}
 	
@@ -57,7 +60,6 @@ public class GlobalExceptionHandler {
 	private String getMessage(Exception e) {
 		StringWriter sw = new StringWriter();
 		try (PrintWriter pw = new PrintWriter(sw)) {
-			e.printStackTrace(pw);
 			pw.flush();
 			sw.flush();
 		}

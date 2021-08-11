@@ -31,9 +31,15 @@
             <!--<groupId>cn.zm</groupId>-->
             <!--<artifactId>mybatis-plus</artifactId>-->
         <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>cn.zm</groupId>-->
+            <!--<artifactId>tk-mybatis</artifactId>-->
+        <!--</dependency>-->
+
         <dependency>
             <groupId>cn.zm</groupId>
-            <artifactId>tk-mybatis</artifactId>
+            <artifactId>async-programing</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <!-- redis -->
