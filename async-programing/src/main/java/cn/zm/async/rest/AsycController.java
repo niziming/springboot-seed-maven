@@ -1,49 +1,105 @@
 package cn.zm.async.rest;
 
+import cn.hutool.core.thread.ThreadUtil;
 import cn.zm.async.service.AsyncService;
+import cn.zm.async.service.CompositeService;
+import cn.zm.common.common.ResponseResult;
+import cn.zm.common.utils.ConcurrentUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
+import javax.xml.ws.Response;
+import java.util.*;
+import java.util.concurrent.*;
 
 @RequestMapping("async")
 @RestController
 @Api(tags = "异步编程")
 public class AsycController {
     @Resource
-    private AsyncService asyncService;
+    private CompositeService compositeService;
+    @Resource
+    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
+
 
     @GetMapping("search")
     @ApiOperation("搜索")
-    public Map<String, String> searchList() throws Exception {
-        long beforeTime = System.currentTimeMillis();// 开始时间戳
-        //应用搜索-异步
-        Future<String> appResult = asyncService.searchAppInfo();
-        //待办搜索-异步
-        Future<String> pendingResult = asyncService.searchPending();
-        //用户搜索-异步
-        Future<String> userResult = asyncService.searchUser();
-        //添加结果集，30秒超时
-        Map<String, String> jsonObject = new HashMap<String, String>();
-        if (appResult != null) {
-            jsonObject.put("AppInfo", appResult.get(30, TimeUnit.SECONDS));
-        }
-        if (pendingResult != null) {
-            jsonObject.put("AppPending", pendingResult.get(30, TimeUnit.SECONDS));
-        }
-        if (userResult != null) {
-            jsonObject.put("UnifiedUser", userResult.get(30, TimeUnit.SECONDS));
-        }
-        long afterTime = System.currentTimeMillis();// 结束时间戳
-        //耗时3秒多正确，耗时6秒多异步未成功
-        System.out.println("耗时" + (afterTime - beforeTime) + "毫秒");
-        return jsonObject;
+    public ResponseResult searchList() throws InterruptedException, ExecutionException, TimeoutException {
+        HashMap<Object, Object> map = new HashMap<>();
+        // CompletableFuture future = ConcurrentUtils.getFuture(() -> {
+        //     System.out.println("1,System.currentTimeMillis() = " + System.currentTimeMillis());
+        //     try {
+        //         Thread.sleep(2000);
+        //     } catch (InterruptedException e) {
+        //         e.printStackTrace();
+        //     }
+        //     return UUID.randomUUID();
+        // }, threadPoolTaskExecutor);
+        // CompletableFuture future1 = ConcurrentUtils.getFuture(() -> {
+        //     System.out.println("2,System.currentTimeMillis() = " + System.currentTimeMillis());
+        //     try {
+        //         Thread.sleep(2000);
+        //     } catch (InterruptedException e) {
+        //         e.printStackTrace();
+        //     }
+        //     return UUID.randomUUID();
+        // }, threadPoolTaskExecutor);
+        // CompletableFuture future2 = ConcurrentUtils.getFuture(() -> {
+        //     System.out.println("3,System.currentTimeMillis() = " + System.currentTimeMillis());
+        //     try {
+        //         Thread.sleep(2000);
+        //     } catch (InterruptedException e) {
+        //         e.printStackTrace();
+        //     }
+        //     return UUID.randomUUID();
+        // }, threadPoolTaskExecutor);
+        // // future.thenAccept(e ->{
+        // // });
+
+        // objectCompletionService.submit()
+        // map.put(0, future);
+        // map.put(1, future1);
+        // map.put(2, future2);
+        // map.put(0, future.get());
+        // map.put(1, future1.get());
+        // map.put(2, future2.get());
+
+        CompletionService<Object> service = ThreadUtil.newCompletionService(threadPoolTaskExecutor.getThreadPoolExecutor());
+        Future<Object> submit = service.submit(() -> {
+            System.out.println("3,System.currentTimeMillis() = " + System.currentTimeMillis());
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return UUID.randomUUID();
+        });
+        Future<Object> submit1 = service.submit(() -> {
+            System.out.println("3,System.currentTimeMillis() = " + System.currentTimeMillis());
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return UUID.randomUUID();
+        });
+        Future<Object> submit2 = service.submit(() -> {
+            System.out.println("3,System.currentTimeMillis() = " + System.currentTimeMillis());
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return UUID.randomUUID();
+        });
+        map.put(0, submit.get());
+        map.put(1, submit1.get());
+        map.put(2, submit2.get());
+        return ResponseResult.succ(map);
     }
 }

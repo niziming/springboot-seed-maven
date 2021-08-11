@@ -7,13 +7,13 @@ public interface AsyncService {
     /**
      * 异步搜索
      */
-    Future<String> searchAppInfo() throws Exception;
+    Future<String> searchAppInfo() throws InterruptedException;
     /**
      * 待办搜索-异步
      */
-    Future<String> searchPending() throws Exception;
+    Future<String> searchPending() throws InterruptedException;
     /**
      * 用户搜索-异步
      */
-    Future<String> searchUser() throws Exception;
+    Future<String> searchUser() throws InterruptedException;
 }

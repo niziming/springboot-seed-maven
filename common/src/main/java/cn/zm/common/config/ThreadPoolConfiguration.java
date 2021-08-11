@@ -4,7 +4,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import javax.annotation.Resource;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 
 /**
  * 覆盖spring 默认线程池
@@ -12,7 +17,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * @author Mr_W
  */
 @Configuration
-public class ThreadPoolConfiguration {
+@EnableAsync
+public class ThreadPoolConfiguration <T> {
 
 	@Value("${spring.application.name}")
 	private String applicationName;

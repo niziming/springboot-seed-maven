@@ -18,12 +18,10 @@ public class AsyncServiceImpl implements AsyncService {
      */
     @Async
     @Override
-    public Future<String> searchAppInfo() throws Exception {
+    public Future<String> searchAppInfo() throws InterruptedException {
         //自己的业务逻辑
-
         //睡眠3秒测试
         Thread.sleep(3000);
-
         String result = null;
         return new AsyncResult<String>(result);
     }
@@ -33,7 +31,7 @@ public class AsyncServiceImpl implements AsyncService {
      */
     @Async
     @Override
-    public Future<String> searchPending() throws Exception {
+    public Future<String> searchPending() throws InterruptedException {
         //自己的业务逻辑
 
         //睡眠1秒测试
@@ -48,7 +46,7 @@ public class AsyncServiceImpl implements AsyncService {
      */
     @Async
     @Override
-    public Future<String> searchUser() throws Exception {
+    public Future<String> searchUser() throws InterruptedException {
         //自己的业务逻辑
 
         //睡眠2秒测试
