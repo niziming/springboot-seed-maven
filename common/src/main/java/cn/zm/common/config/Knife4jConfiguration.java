@@ -11,8 +11,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 /**
- * @author Mr_W
- * @date now
+ * @author 十渊
  * @description swagger 配置
  */
 @Configuration

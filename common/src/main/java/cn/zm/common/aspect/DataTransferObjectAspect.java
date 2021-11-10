@@ -1,7 +1,7 @@
 package cn.zm.common.aspect;
 
 import cn.zm.common.annotation.SetNull;
-import cn.zm.common.common.ServiceException;
+import cn.zm.common.base.ServiceException;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -19,7 +19,7 @@ import java.time.Duration;
 import java.time.Instant;
 
 /**
- * @author Mr_W
+ * @author 十渊
  * @date 2021/2/18 9:22
  * @description dto 参数切面
  */

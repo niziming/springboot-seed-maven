@@ -19,10 +19,10 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>cn.zm</groupId>
-            <artifactId>common</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>cn.zm</groupId>-->
+        <!--    <artifactId>common</artifactId>-->
+        <!--</dependency>-->
         <!--<dependency>-->
         <!--    <groupId>cn.zm</groupId>-->
         <!--    <artifactId>netty</artifactId>-->
@@ -31,15 +31,9 @@
             <!--<groupId>cn.zm</groupId>-->
             <!--<artifactId>mybatis-plus</artifactId>-->
         <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>cn.zm</groupId>-->
-            <!--<artifactId>tk-mybatis</artifactId>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>cn.zm</groupId>
-            <artifactId>async-programing</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>tk-mybatis</artifactId>
         </dependency>
 
         <!-- redis -->
@@ -51,7 +45,6 @@
         <!--    <groupId>org.apache.commons</groupId>-->
         <!--    <artifactId>commons-pool2</artifactId>-->
         <!--</dependency>-->
-
 
         <!-- 导入配置文件处理器，配置文件进行绑定就会有提示 -->
         <dependency>

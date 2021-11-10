@@ -20,7 +20,7 @@ package cn.zm.common.utils;//package cn.zm.utils;
 //import static org.slf4j.LoggerFactory.getLogger;
 //
 ///**
-// * @author Mr_W
+// * @author 十渊
 // * @date 2021/2/17 15:05
 // * @description MinIo 工具类
 // */

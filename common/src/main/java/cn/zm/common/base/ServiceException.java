@@ -1,4 +1,4 @@
-package cn.zm.common.config;
+package cn.zm.common.base;
 
 
 import cn.hutool.core.util.StrUtil;
