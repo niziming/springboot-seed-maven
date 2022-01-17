@@ -27,14 +27,14 @@
         <!--    <groupId>cn.zm</groupId>-->
         <!--    <artifactId>netty</artifactId>-->
         <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>cn.zm</groupId>-->
-            <!--<artifactId>mybatis-plus</artifactId>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>cn.zm</groupId>
-            <artifactId>tk-mybatis</artifactId>
+            <artifactId>mybatis-plus</artifactId>
         </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>cn.zm</groupId>-->
+        <!--    <artifactId>tk-mybatis</artifactId>-->
+        <!--</dependency>-->
 
         <!-- redis -->
         <dependency>

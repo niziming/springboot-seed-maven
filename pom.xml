@@ -19,9 +19,9 @@
         <module>web</module>
         <module>netty</module>
         <module>common</module>
-        <!--<module>mybatis-plus</module>-->
-        <module>tk-mybatis</module>
-        <module>async-programing</module>
+        <module>mybatis-plus</module>
+        <!--<module>tk-mybatis</module>-->
+        <!--<module>async-programing</module>-->
     </modules>
 
     <packaging>pom</packaging>

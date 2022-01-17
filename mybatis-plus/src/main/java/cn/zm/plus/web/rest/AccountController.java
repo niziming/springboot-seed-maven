@@ -1,10 +1,12 @@
 package cn.zm.plus.web.rest;
 
+import cn.zm.common.base.ResponseResult;
+import cn.zm.common.base.ServiceException;
+import cn.zm.common.base.ServiceExceptionBuilder;
 import cn.zm.plus.web.service.IAccountService;
 import org.springframework.web.bind.annotation.RestController;
 import cn.zm.plus.config.BaseController;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import cn.zm.common.common.ResponseResult;
 import cn.zm.plus.web.entity.dto.AccountDTO;
 import cn.zm.plus.web.entity.vo.AccountVO;
 import io.swagger.annotations.ApiImplicitParam;
@@ -72,6 +74,18 @@ public class AccountController extends BaseController {
     public ResponseResult update(@RequestBody @Validated AccountDTO account) {
         // TODO 修改
         accountService.updateById(account.convert());
+        return ResponseResult.succ("修改成功");
+    }
+
+    @PostMapping("error")
+    @ApiOperation("用户异常接口")
+    public ResponseResult err(@RequestBody AccountDTO accountDTO) {
+        // TODO 异常
+        try {
+            int i = 1 / 0;
+        } catch (Exception e) {
+            throw new ServiceException("用户异常接口");
+        }
         return ResponseResult.succ("修改成功");
     }
 }
