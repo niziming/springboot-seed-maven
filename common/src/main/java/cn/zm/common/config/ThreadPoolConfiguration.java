@@ -34,6 +34,7 @@ public class ThreadPoolConfiguration <T> {
 		// 队列容量
 		pool.setQueueCapacity(50);
 		pool.setThreadNamePrefix(applicationName + "-");
+		pool.initialize();
 		return pool;
 	}
 
