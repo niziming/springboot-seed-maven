@@ -44,12 +44,11 @@
             <scope>compile</scope>
         </dependency>
     
-        <!--freemarker模板引擎-->
+        <!-- screw核心 生成数据库文档 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-            <!--<version>${freemarker.version}</version>-->
-            <scope>compile</scope>
+            <groupId>cn.smallbun.screw</groupId>
+            <artifactId>screw-core</artifactId>
+            <version>1.0.5</version>
         </dependency>
     </dependencies>
 
